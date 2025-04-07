@@ -5,12 +5,16 @@ import java.util.Scanner;
 public class KiemTraNamNhuan {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("input year");
-        int year = Integer.parseInt(scanner.nextLine());
+        int year;
+        do {
+            System.out.println("input year");
+            year = Integer.parseInt(scanner.nextLine());
+        } while (year < 0);
+
         if (year % 4 == 0) {
             if (year % 100 == 0) {
                 if (year % 400 == 0) {
-                    System.out.println(year + "%d is leap year");
+                    System.out.println(year + " is leap year");
                 } else {
                     System.out.println(year + " is not leap year");
                 }
@@ -18,7 +22,7 @@ public class KiemTraNamNhuan {
                 System.out.println(year + " is leap year");
             }
         } else {
-            System.out.println(year + "%d is not leap year ");
+            System.out.println(year + " is not leap year ");
         }
     }
 }

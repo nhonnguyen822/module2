@@ -223,7 +223,6 @@ public class ChuyenSoThanhChu {
                     break;
             }
             System.out.println(hangTram + "hunrted " + hangChuc + " " + hangDonVi);
-
         } else {
             System.out.println("re-enter");
         }
