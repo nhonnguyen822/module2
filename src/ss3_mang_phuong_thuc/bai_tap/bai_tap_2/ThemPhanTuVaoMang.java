@@ -1,4 +1,4 @@
-package ss3.mang.bai_tap.bai_tap_2;
+package ss3_mang_phuong_thuc.bai_tap.bai_tap_2;
 
 import org.w3c.dom.ls.LSOutput;
 
