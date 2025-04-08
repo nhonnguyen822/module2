@@ -12,16 +12,20 @@ public class XoaPhanTu {
             array[i] = Integer.parseInt(scanner.nextLine());
         }
         System.out.println(Arrays.toString(array));
-        System.out.println("enter index to delete");
-        int indexDelete = Integer.parseInt(scanner.nextLine());
+        System.out.println("enter element to delete");
+        int elementDelete = Integer.parseInt(scanner.nextLine());
+        int count = 0;
         for (int i = 0; i < array.length; i++) {
-            if (i == indexDelete) {
-                array[i] = null;
+            if (array[i] == null) {
+                continue;
+            } else if (array[i].equals(elementDelete)) {
                 for (int j = i; j < array.length - 1; j++) {
+                    array[j] = null;
                     Integer temp = array[j];
                     array[j] = array[j + 1];
                     array[j + 1] = temp;
                 }
+                i--;
             }
         }
         System.out.println(Arrays.toString(array));
