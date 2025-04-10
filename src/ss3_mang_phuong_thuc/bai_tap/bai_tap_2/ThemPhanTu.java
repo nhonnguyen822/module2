@@ -16,7 +16,7 @@ public class ThemPhanTu {
         int element = Integer.parseInt(scanner.nextLine());
         System.out.println("input index to add");
         int index = Integer.parseInt(scanner.nextLine());
-        while (index > array.length || index <= 0) {
+        while (index > array.length || index < 0) {
             System.out.println("input index to add");
             index = Integer.parseInt(scanner.nextLine());
         }

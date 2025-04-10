@@ -1,4 +1,4 @@
-package ss3.mang.bai_tap.bai_tap_7;
+package ss3_mang_phuong_thuc.bai_tap.bai_tap_7;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class TinhTongDuongCheoMaTran {
         do {
             System.out.println("input row ");
             row = Integer.parseInt(scanner.nextLine());
-        } while (row <= 0 || row > 20);
+        } while (row <= 0 || row > 10);
         double[][] array = new double[row][row];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {

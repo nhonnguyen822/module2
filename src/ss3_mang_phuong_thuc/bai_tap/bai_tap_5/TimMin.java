@@ -1,4 +1,4 @@
-package ss3.mang.bai_tap.bai_tap_5;
+package ss3_mang_phuong_thuc.bai_tap.bai_tap_5;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,9 +18,9 @@ public class TimMin {
         }
         System.out.println("array :" + Arrays.toString(array));
         int min = array[0];
-        for (int i = 0; i < array.length; i++) {
-            if (min > array[i]) {
-                min = array[i];
+        for (int j : array) {
+            if (min > j) {
+                min = j;
             }
         }
         System.out.println("Min of array : " + min);

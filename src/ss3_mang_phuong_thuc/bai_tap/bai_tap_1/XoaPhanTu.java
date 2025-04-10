@@ -14,7 +14,6 @@ public class XoaPhanTu {
         System.out.println(Arrays.toString(array));
         System.out.println("enter element to delete");
         int elementDelete = Integer.parseInt(scanner.nextLine());
-        int count = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {
                 continue;

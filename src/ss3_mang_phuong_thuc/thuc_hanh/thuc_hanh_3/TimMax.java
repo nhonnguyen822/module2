@@ -1,4 +1,4 @@
-package ss3.mang.thuc_hanh.thuc_hanh_3;
+package ss3_mang_phuong_thuc.thuc_hanh.thuc_hanh_3;
 
 import java.util.Arrays;
 import java.util.Scanner;

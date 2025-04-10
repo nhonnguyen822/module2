@@ -1,4 +1,4 @@
-package ss3.mang.bai_tap.bai_tap_6;
+package ss3_mang_phuong_thuc.bai_tap.bai_tap_6;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -30,10 +30,10 @@ public class TinhTongCot {
         while (colWantToSum < 0 || colWantToSum >= arr.length) {
             colWantToSum = Integer.parseInt(scanner.nextLine());
         }
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
+        for (double[] doubles : arr) {
+            for (int j = 0; j < doubles.length; j++) {
                 if (j == colWantToSum) {
-                    sum += arr[i][j];
+                    sum += doubles[j];
                 }
             }
         }

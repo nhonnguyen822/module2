@@ -1,4 +1,4 @@
-package ss3.mang.bai_tap.bai_tap_8;
+package ss3_mang_phuong_thuc.bai_tap.bai_tap_8;
 
 import java.util.Scanner;
 
@@ -7,7 +7,7 @@ public class DemSoLanXuatHienKyTu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("input a string ");
         String str = scanner.nextLine();
-        while (str.length() == 0) {
+        while (str.trim().isEmpty()) {
             System.out.println("input a string ");
             str = scanner.nextLine();
         }

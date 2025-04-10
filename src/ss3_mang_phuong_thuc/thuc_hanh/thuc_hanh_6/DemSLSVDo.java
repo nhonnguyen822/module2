@@ -1,4 +1,4 @@
-package ss3.mang.thuc_hanh.thuc_hanh_6;
+package ss3_mang_phuong_thuc.thuc_hanh.thuc_hanh_6;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -21,8 +21,8 @@ public class DemSLSVDo {
         }
         System.out.println(Arrays.toString(studentTestScores));
         int count = 0;
-        for (int i = 0; i < studentTestScores.length; i++) {
-            if (studentTestScores[i] >= 5) {
+        for (int studentTestScore : studentTestScores) {
+            if (studentTestScore >= 5) {
                 count++;
             }
         }
