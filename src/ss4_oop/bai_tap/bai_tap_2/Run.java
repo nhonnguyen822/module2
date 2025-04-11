@@ -2,7 +2,7 @@ package ss4_oop.bai_tap.bai_tap_2;
 
 import java.util.Scanner;
 
-public class Main {
+public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         StopWatch stopWatch = new StopWatch();

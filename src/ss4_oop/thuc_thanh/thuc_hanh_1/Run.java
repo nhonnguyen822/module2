@@ -2,7 +2,7 @@ package ss4_oop.thuc_thanh.thuc_hanh_1;
 
 import java.util.Scanner;
 
-public class Main {
+public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("enter the height");
