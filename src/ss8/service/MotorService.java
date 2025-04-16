@@ -18,4 +18,9 @@ public class MotorService implements IMotorSevice {
     public void add(Motor motor) {
         motorRepository.add(motor);
     }
+
+    @Override
+    public void display(ArrayList<Motor> motors) {
+        motorRepository.display(motors);
+    }
 }

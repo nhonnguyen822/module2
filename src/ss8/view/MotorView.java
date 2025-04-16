@@ -1,17 +1,8 @@
 package ss8.view;
 import ss8.entity.Motor;
-import java.util.ArrayList;
 import java.util.Scanner;
 public class MotorView {
     private static Scanner scanner = new Scanner(System.in);
-
-    public static void display(ArrayList<Motor> motors) {
-        for (int i = 0; i < motors.size(); i++) {
-            System.out.println(motors.get(i));
-        }
-    }
-
-
     public static Motor inputDataForMotor() {
         System.out.println("enter licenseplate");
         String licenseplate = scanner.nextLine();

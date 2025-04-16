@@ -2,6 +2,7 @@ package ss8.repository;
 
 
 import ss8.entity.Car;
+
 import java.util.ArrayList;
 
 public class CarRepository implements ICarRepository {
@@ -17,6 +18,14 @@ public class CarRepository implements ICarRepository {
     public ArrayList<Car> findAll() {
         return cars;
     }
+
+    @Override
+    public void display(ArrayList<Car> cars) {
+        for (int i = 0; i < cars.size(); i++) {
+            System.out.println(cars.get(i));
+        }
+    }
+
 
     @Override
     public void add(Car car) {

@@ -2,6 +2,7 @@ package ss8.repository;
 
 
 import ss8.entity.Truck;
+
 import java.util.ArrayList;
 
 public class TruckRepository implements ITruckRepository {
@@ -17,6 +18,7 @@ public class TruckRepository implements ITruckRepository {
     public ArrayList<Truck> finalAll() {
         return trucks;
     }
+
     @Override
     public void add(Truck truck) {
         trucks.add(truck);
@@ -25,5 +27,12 @@ public class TruckRepository implements ITruckRepository {
     @Override
     public void delete(Truck truck) {
         trucks.remove(truck);
+    }
+
+    @Override
+    public void display(ArrayList<Truck> trucks) {
+        for (int i = 0; i < trucks.size(); i++) {
+            System.out.println(trucks.get(i));
+        }
     }
 }

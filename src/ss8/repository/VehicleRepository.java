@@ -8,25 +8,19 @@ import java.util.ArrayList;
 
 
 public class VehicleRepository implements IVehicleRepository {
-    private static ArrayList<Vehicle> vehicles = new ArrayList<>();
-    private static ICarRepository carRepository = new CarRepository();
-    private static IMotorRepository motorRepository = new MotorRepository();
-    private static ITruckRepository truckRepository = new TruckRepository();
+    private static final ArrayList<Vehicle> vehicles = new ArrayList<>();
+    private static final ICarRepository carRepository = new CarRepository();
+    private static final IMotorRepository motorRepository = new MotorRepository();
+    private static final ITruckRepository truckRepository = new TruckRepository();
 
     @Override
     public ArrayList<Vehicle> findAdd() {
         ArrayList<Car> cars = carRepository.findAll();
-        for (int i = 0; i < cars.size(); i++) {
-            vehicles.add(cars.get(i));
-        }
+        vehicles.addAll(cars);
         ArrayList<Truck> trucks = truckRepository.finalAll();
-        for (int i = 0; i < trucks.size(); i++) {
-            vehicles.add(trucks.get(i));
-        }
+        vehicles.addAll(trucks);
         ArrayList<Motor> motors = motorRepository.finalAll();
-        for (int i = 0; i < motors.size(); i++) {
-            vehicles.add(motors.get(i));
-        }
+        vehicles.addAll(motors);
         return vehicles;
     }
 

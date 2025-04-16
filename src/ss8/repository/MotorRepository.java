@@ -29,4 +29,11 @@ public class MotorRepository implements IMotorRepository {
     public void delete(Motor motor) {
         motors.remove(motor);
     }
+
+    @Override
+    public void display(ArrayList<Motor> motors) {
+        for (int i = 0; i < motors.size(); i++) {
+            System.out.println(motors.get(i));
+        }
+    }
 }

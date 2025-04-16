@@ -12,13 +12,13 @@ public class Car extends Vehicle {
         this.carType = carType;
     }
 
-    public Car(String licenseplate, String manufacturerName, int yearManafacture, String owner, int numberOfSeat, String carType) {
-        super(licenseplate, manufacturerName, yearManafacture, owner);
+    public Car(String licensePlate, String manufacturerName, int yearManafacture, String owner, int numberOfSeat, String carType) {
+        super(licensePlate, manufacturerName, yearManafacture, owner);
         this.numberOfSeat = numberOfSeat;
         this.carType = carType;
     }
-
     public int getNumberOfSeat() {
+
         return numberOfSeat;
     }
 

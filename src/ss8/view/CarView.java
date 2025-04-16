@@ -1,22 +1,10 @@
 package ss8.view;
 
 import ss8.entity.Car;
-
-import java.util.ArrayList;
 import java.util.Scanner;
+
 public class CarView {
     private static Scanner scanner = new Scanner(System.in);
-
-    public static void display(ArrayList<Car> cars) {
-        for (int i = 0; i < cars.size(); i++) {
-            System.out.println(cars.get(i));
-        }
-    }
-
-    public static String inputlicenseplate() {
-        System.out.println("enter licenseplate");
-        return scanner.nextLine();
-    }
 
     public static Car inputDataForCar() {
         System.out.println("enter licenseplate");

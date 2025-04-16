@@ -9,4 +9,6 @@ public interface IMotorRepository {
     void add(Motor motor);
     void delete(Motor motor);
 
+    void display(ArrayList<Motor> motors);
+
 }

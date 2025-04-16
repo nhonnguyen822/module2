@@ -7,4 +7,5 @@ public interface IMotorSevice {
     ArrayList<Motor>findAll();
 
     void add(Motor motor);
+    void display(ArrayList<Motor> motors);
 }

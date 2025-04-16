@@ -1,18 +1,10 @@
 package ss8.view;
 
 import ss8.entity.Truck;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TruckView {
     private static Scanner scanner = new Scanner(System.in);
-
-    public static void display(ArrayList<Truck> trucks) {
-        for (int i = 0; i < trucks.size(); i++) {
-            System.out.println(trucks.get(i));
-        }
-    }
-
     public static Truck inputDataForMotor() {
         System.out.println("enter licenseplate");
         String licenseplate = scanner.nextLine();
