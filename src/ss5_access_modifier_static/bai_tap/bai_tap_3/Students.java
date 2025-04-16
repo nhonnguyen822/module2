@@ -11,6 +11,12 @@ public class Students {
         this.old = old;
     }
 
+    public Students(int id, String name, int old) {
+        this.id = id;
+        this.name = name;
+        this.old = old;
+    }
+
     public String getName() {
         return name;
     }

@@ -18,7 +18,6 @@ public class Menu {
             System.out.println("4.update");
             System.out.println("5.search");
             System.out.println("6.exit");
-
             int chose = 0;
             try {
                 System.out.println("enter your chose ");
