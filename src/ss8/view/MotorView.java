@@ -16,5 +16,4 @@ public class MotorView {
         int capacity = Integer.parseInt(scanner.nextLine());
         return new Motor(licenseplate, manufacturerName, yearManafacture, owner, capacity);
     }
-
 }
