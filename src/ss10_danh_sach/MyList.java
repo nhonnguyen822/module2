@@ -102,4 +102,5 @@ public class MyList<E> {
         myList.size = this.size;
         return myList;
     }
+
 }

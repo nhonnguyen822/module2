@@ -20,7 +20,7 @@ public class HouseView {
         System.out.println("nhập mã dịch vụ");
         String serviceCode = scanner.nextLine();
         while (true) {
-            String regexRoomID = "^SVRO-\\d{4}$";
+            String regexRoomID = "^SVHO-\\d{4}$";
             Pattern pattern = Pattern.compile(regexRoomID);
             Matcher matcher = pattern.matcher(serviceCode);
             if (matcher.matches()) {
