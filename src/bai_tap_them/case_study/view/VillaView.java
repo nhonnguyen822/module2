@@ -61,7 +61,7 @@ public class VillaView {
         System.out.println("nhập kiểu thuê");
         String rentalType = scanner.nextLine();
         while (true) {
-            String regex = "^([A-Z][a-z]+\\s)*[A-Z][a-z]*$";
+            String regex = "^([A\\u00E0 -Z\\u1EF9][a\\u00E0 -z\\u1EF9]+\\s)*[A-Z][a-z]*$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(rentalType);
             if (matcher.matches()) {

@@ -77,7 +77,7 @@ public class RoomView {
         System.out.println("dịch vụ miễn phí");
         String serviceFree = scanner.nextLine();
         while (true) {
-            String regex = "^([A-Z][a-z]+\\s)*[A-Z][a-z]*$";
+            String regex = "^([A-Z-][a-z]+\\s)*[A-Z][a-z]*$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(serviceFree);
             if (matcher.matches()) {
