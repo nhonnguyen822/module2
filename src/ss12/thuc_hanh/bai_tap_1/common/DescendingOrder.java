@@ -4,9 +4,9 @@ import ss12.thuc_hanh.bai_tap_1.enity.Product;
 
 import java.util.Comparator;
 
-public class SapXepTangDan implements Comparator<Product> {
+public class DescendingOrder implements Comparator<Product> {
     @Override
     public int compare(Product o1, Product o2) {
-        return o1.getPrice() - o2.getPrice();
+        return o2.getPrice() - o1.getPrice();
     }
 }

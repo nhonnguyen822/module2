@@ -21,10 +21,19 @@ public class ProductView {
         return scanner.nextLine();
     }
 
+    //nhap id tim thay doi ,xoa
+
     public static int inputID() {
         System.out.println("enter ID ");
-        return Integer.parseInt(scanner.nextLine());
+        int input = Integer.parseInt(scanner.nextLine());
+        while (input <= 0) {
+            System.out.println("re-enter ID ");
+            input = Integer.parseInt(scanner.nextLine());
+        }
+        return input;
     }
+
+    //nhap them product
 
     public static Product add() {
         System.out.println("enter id");
@@ -52,6 +61,7 @@ public class ProductView {
         int price = Integer.parseInt(scanner.nextLine());
         return new Product(id, name, price);
     }
+    // nhap thay doi product
 
     public static void edit(Product product) {
         System.out.println("id :" + product.getId());

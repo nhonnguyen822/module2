@@ -1,11 +1,10 @@
 package ss12.thuc_hanh.bai_tap_1.repository;
 
-import ss12.thuc_hanh.bai_tap_1.common.SapXepGiamDan;
-import ss12.thuc_hanh.bai_tap_1.common.SapXepTangDan;
+import ss12.thuc_hanh.bai_tap_1.common.DescendingOrder;
+import ss12.thuc_hanh.bai_tap_1.common.AscendingOrder;
 import ss12.thuc_hanh.bai_tap_1.enity.Product;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductRepository implements IProductRepository {
@@ -46,11 +45,11 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public void ascendingOder(List<Product> products) {
-        Collections.sort(products, new SapXepTangDan());
+        products.sort(new AscendingOrder());
     }
 
     @Override
     public void decreasingOder(List<Product> products) {
-        Collections.sort(products, new SapXepGiamDan());
+        products.sort(new DescendingOrder());
     }
 }
