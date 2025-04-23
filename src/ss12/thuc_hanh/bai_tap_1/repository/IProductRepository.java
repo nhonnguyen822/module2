@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface IProductRepository {
     List<Product> findAll();
-
     void add(Product product);
 
     Product edit(Product product);
@@ -14,4 +13,5 @@ public interface IProductRepository {
     void delete(int id);
     void ascendingOder(List<Product> products);
     void decreasingOder(List<Product> products);
+
 }

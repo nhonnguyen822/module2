@@ -3,6 +3,7 @@ package ss15.thuc_hanh.thuc_hanh_3;
 import java.time.LocalDate;
 
 public class Student {
+    public static String java;
     private String name;
     private LocalDate birthDate;
     private Gender gender;

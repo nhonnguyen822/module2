@@ -1,8 +1,9 @@
 package ss12.thuc_hanh.bai_tap_1.enity;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Product implements Comparator<Product> {
+public class Product implements Comparator<Product>, Serializable {
     private int id;
     private String name;
     private int price;
