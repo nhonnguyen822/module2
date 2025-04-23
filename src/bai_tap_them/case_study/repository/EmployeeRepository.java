@@ -35,18 +35,7 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     @Override
-    public void edit(String employee) {
-        boolean test = false;
-        for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getId().equals(employee)) {
-                EmployeeView.editEmployee(employees.get(i));
-                System.out.println("đã thay đổi thành công");
-                test = true;
-                break;
-            }
-        }
-        if(!test){
-            System.out.println("không tim thấy nhân viên ");
-        }
+    public Employee edit(Employee employee) {
+        return employee;
     }
 }

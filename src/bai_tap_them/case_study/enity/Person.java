@@ -8,7 +8,6 @@ public abstract class Person {
     private String numberCMND;
     private String phoneNumber;
     private String email;
-
     public Person() {
     }
 

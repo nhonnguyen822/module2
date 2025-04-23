@@ -20,9 +20,8 @@ public class EmployeeService implements IEmployeeService {
 
     }
 
-
     @Override
-    public void edit(String employeeId) {
-        employeeService.edit(employeeId);
+    public Employee edit(Employee employee) {
+        return employeeService.edit(employee);
     }
 }

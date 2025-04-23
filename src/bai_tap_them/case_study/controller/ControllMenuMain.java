@@ -5,6 +5,7 @@ import bai_tap_them.case_study.service.*;
 import bai_tap_them.case_study.view.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ControllMenuMain {
@@ -66,6 +67,7 @@ public class ControllMenuMain {
 
     //    hiên thi quan ly nhân  viên
     private static final IEmployeeService employeeService = new EmployeeService();
+
     public static void displayMenuEmployee() {
         Scanner scanner = new Scanner(System.in);
         String exit = "";
@@ -88,8 +90,12 @@ public class ControllMenuMain {
                     break;
                 case 3:
                     String idEdit = EmployeeView.inputIDEmployeeEdit();
-                    if (idEdit != null) {
-                        employeeService.edit(idEdit);
+                    List<Employee> employeeList = employeeService.findALL();
+                    for (int i = 0; i < employeeList.size(); i++) {
+                        if (employeeList.get(i).getId().equals(idEdit)) {
+                            EmployeeView.editEmployee(employeeList.get(i));
+                            employeeService.edit(employeeList.get(i));
+                        }
                     }
                     break;
                 case 4:
@@ -192,6 +198,7 @@ public class ControllMenuMain {
     //hiem thi menu quan ly khách hang
 
     private static final ICustomerService customerSevice = new CustomerService();
+
     public static void displayMenuCustomer() {
         Scanner scanner = new Scanner(System.in);
         String exit = "";
@@ -214,9 +221,18 @@ public class ControllMenuMain {
                     break;
                 case 3:
                     String customerIdEdit = CustomerView.inputIDCustomer();
-                    if (customerIdEdit != null) {
-                        customerSevice.edit(customerIdEdit);
+                    List<Customer> customerList = customerSevice.findALL();
+                    for (int i = 0; i < customerList.size(); i++) {
+                        if (customerList.get(i).getId().equals(customerIdEdit)) {
+                            CustomerView.editCustomer(customerList.get(i));
+                            customerSevice.edit(customerList.get(i));
+                            System.out.println("thay đổi thành công");
+                            break;
+                        } else {
+                            System.out.println("không tim thấy id của bạn");
+                        }
                     }
+
                     break;
                 case 4:
                     do {

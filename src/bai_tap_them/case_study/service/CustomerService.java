@@ -20,8 +20,9 @@ public class CustomerService implements ICustomerService {
         customers.add(entity);
     }
 
+
     @Override
-    public void edit(String customerId) {
-        customers.edit(customerId);
+    public Customer edit(Customer customer) {
+        return customers.edit(customer);
     }
 }

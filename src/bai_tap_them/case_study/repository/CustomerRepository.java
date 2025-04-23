@@ -34,18 +34,7 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public void edit(String customerId) {
-        boolean test = false;
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getId().equals(customerId)) {
-                CustomerView.editCustomer(customers.get(i));
-                System.out.println("đã thay đổi thành công");
-                test = true;
-                break;
-            }
-        }
-        if (!test) {
-            System.out.println("không tim thấy khách hàng ");
-        }
+    public Customer edit(Customer customer) {
+        return customer;
     }
 }

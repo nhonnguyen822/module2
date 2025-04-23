@@ -3,7 +3,10 @@ package bai_tap_them.case_study.view;
 import bai_tap_them.case_study.enity.Customer;
 import bai_tap_them.case_study.enity.Employee;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -156,8 +159,20 @@ public class CustomerView {
                 name = scanner.nextLine();
             }
         }
-        System.out.println("nhap năm sinh");
-        String year = scanner.nextLine();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd//MM/yyyy");
+        simpleDateFormat.setLenient(false);
+        String year;
+        while (true) {
+            System.out.println("nhap năm sinh");
+            year = scanner.nextLine();
+            try {
+                Date birdDay = simpleDateFormat.parse(year);
+                System.out.println("ngay sinh hợp lệ");
+                break;
+            } catch (ParseException e) {
+                System.out.println("ngày sinh không hợp lệ");
+            }
+        }
         System.out.println("nhập giới tính");
         String gender = scanner.nextLine();
         System.out.println("nhập CMND");
@@ -202,7 +217,7 @@ public class CustomerView {
             } else {
                 System.out.println("email không hợp lệ");
                 System.out.println("vui lòng nhập email");
-                 email = scanner.nextLine();
+                email = scanner.nextLine();
             }
         }
         System.out.println("nhập loại khách hàng");
