@@ -1,11 +1,9 @@
 package ss8.service;
 
-import ss8.entity.Motor;
 import ss8.entity.Truck;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ITruckService {
-    ArrayList<Truck> findAll();
+    List<Truck> findAll();
     void add(Truck truck);
-    void display(ArrayList<Truck> trucks);
 }

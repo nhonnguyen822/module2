@@ -56,4 +56,5 @@ public abstract class Vehicle {
                         ", yearManafacture=" + yearManafacture +
                         ", owner='" + owner + '\'';
     }
+    public abstract String converToString();
 }

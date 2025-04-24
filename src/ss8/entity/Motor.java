@@ -30,4 +30,10 @@ public class Motor extends Vehicle {
                 "capacity=" + capacity +
                 '}';
     }
+
+    @Override
+    public String converToString() {
+        return super.getLicenseplate()+","+super.getManufacturerName()+
+                ","+super.getYearManafacture()+","+super.getOwner()+","+this.capacity;
+    }
 }

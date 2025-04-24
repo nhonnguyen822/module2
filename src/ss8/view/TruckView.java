@@ -1,10 +1,13 @@
 package ss8.view;
 
+
 import ss8.entity.Truck;
+import java.util.List;
 import java.util.Scanner;
 
 public class TruckView {
     private static Scanner scanner = new Scanner(System.in);
+
     public static Truck inputDataForMotor() {
         System.out.println("enter licenseplate");
         String licenseplate = scanner.nextLine();
@@ -17,5 +20,11 @@ public class TruckView {
         System.out.println("enter payload");
         double payload = Double.parseDouble(scanner.nextLine());
         return new Truck(licenseplate, manufacturerName, yearManafacture, owner, payload);
+    }
+
+    public static void display(List<Truck> trucks) {
+        for (int i = 0; i < trucks.size(); i++) {
+            System.out.println(trucks.get(i));
+        }
     }
 }

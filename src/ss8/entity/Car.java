@@ -42,4 +42,10 @@ public class Car extends Vehicle {
                 ", carType='" + carType + '\'' +
                 '}';
     }
+
+    @Override
+    public String converToString() {
+        return super.getLicenseplate()+","+super.getManufacturerName()+
+                ","+super.getYearManafacture()+","+super.getOwner()+","+this.numberOfSeat+","+this.carType;
+    }
 }

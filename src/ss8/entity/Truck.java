@@ -30,4 +30,10 @@ public class Truck extends Vehicle {
                 "payload=" + payload +
                 '}';
     }
+
+    @Override
+    public String converToString() {
+        return super.getLicenseplate() + "," + super.getManufacturerName() +
+                "," + super.getYearManafacture() + "," + super.getOwner() + "," + this.payload;
+    }
 }

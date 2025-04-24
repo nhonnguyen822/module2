@@ -1,10 +1,10 @@
 package ss8.repository;
 
 import ss8.entity.Vehicle;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IVehicleRepository {
-    ArrayList<Vehicle> findAdd();
+    List<Vehicle> findAdd();
 
     Vehicle findLicencaPlate(String licencaPlate);
 

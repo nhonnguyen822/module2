@@ -16,7 +16,6 @@ public class ControllerMenu {
     private static final IProductService productService = new ProductService();
 
 
-
     public static void displayMenu() {
         Scanner scanner = new Scanner(System.in);
         String exit = "";
@@ -39,14 +38,20 @@ public class ControllerMenu {
                     break;
                 case 2:
                     int idDelete = ProductView.inputID();
-                    productService.delete(idDelete);
+                    boolean isDelete= productService.delete(idDelete);
+                    if(isDelete){
+                        productService.delete(idDelete);
+                        System.out.println("xoá thành công");
+                    }else {
+                        System.out.println("không tìm thấy id");
+                    }
                     break;
                 case 3:
                     List<Product> products = productService.findAll();
                     ProductView.display(products);
                     break;
                 case 4:
-                    String nameSeach = ProductView.inputName();
+                    String nameSeach = ProductView.inputNameBySearch();
                     List<Product> productsSearch = productService.findAll();
                     boolean test = false;
                     for (int i = 0; i < productsSearch.size(); i++) {
@@ -74,7 +79,7 @@ public class ControllerMenu {
                     for (int i = 0; i < productsEdit.size(); i++) {
                         if (productsEdit.get(i).getId() == idEdit) {
                             ProductView.edit(productsEdit.get(i));
-                            productService.edit(productsEdit.get(i));
+                            productService.edit(idEdit, productsEdit.get(i));
                             testID = true;
                         }
                     }

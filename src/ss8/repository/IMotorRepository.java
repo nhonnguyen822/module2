@@ -1,14 +1,14 @@
 package ss8.repository;
 
 import ss8.entity.Motor;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IMotorRepository {
-    ArrayList<Motor> finalAll();
+
+    List<Motor> finalAll();
 
     void add(Motor motor);
     void delete(Motor motor);
 
-    void display(ArrayList<Motor> motors);
 
 }

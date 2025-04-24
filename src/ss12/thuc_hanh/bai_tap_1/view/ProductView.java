@@ -16,7 +16,7 @@ public class ProductView {
         }
     }
 
-    public static String inputName() {
+    public static String inputNameBySearch() {
         System.out.println("enter name want search");
         return scanner.nextLine();
     }
@@ -53,12 +53,16 @@ public class ProductView {
                 break;
             } else {
                 System.out.println();
-                System.out.println("re-enter id");
+                System.out.println("re-enter name");
                 name = scanner.nextLine();
             }
         }
         System.out.println("enter price");
         int price = Integer.parseInt(scanner.nextLine());
+        while (price <= 0) {
+            System.out.println("re-enter price");
+            price = Integer.parseInt(scanner.nextLine());
+        }
         return new Product(id, name, price);
     }
     // nhap thay doi product
@@ -84,7 +88,7 @@ public class ProductView {
                 break;
             } else {
                 System.out.println();
-                System.out.println("re-enter id");
+                System.out.println("re-enter name ");
                 name = scanner.nextLine();
             }
         }

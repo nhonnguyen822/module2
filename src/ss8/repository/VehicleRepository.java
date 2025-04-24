@@ -5,23 +5,21 @@ import ss8.entity.Motor;
 import ss8.entity.Truck;
 import ss8.entity.Vehicle;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class VehicleRepository implements IVehicleRepository {
-    private static final ArrayList<Vehicle> vehicles = new ArrayList<>();
     private static final ICarRepository carRepository = new CarRepository();
     private static final IMotorRepository motorRepository = new MotorRepository();
     private static final ITruckRepository truckRepository = new TruckRepository();
 
     @Override
-    public ArrayList<Vehicle> findAdd() {
-        ArrayList<Car> cars = carRepository.findAll();
-        vehicles.addAll(cars);
-        ArrayList<Truck> trucks = truckRepository.finalAll();
-        vehicles.addAll(trucks);
-        ArrayList<Motor> motors = motorRepository.finalAll();
-        vehicles.addAll(motors);
-        return vehicles;
+    public List<Vehicle> findAdd() {
+        List<Vehicle> vehicleList = new ArrayList<>();
+        vehicleList.addAll(carRepository.findAll());
+        vehicleList.addAll(motorRepository.finalAll());
+        vehicleList.addAll(truckRepository.finalAll());
+        return vehicleList;
     }
 
     @Override

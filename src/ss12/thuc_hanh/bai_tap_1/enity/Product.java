@@ -3,7 +3,7 @@ package ss12.thuc_hanh.bai_tap_1.enity;
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class Product implements Comparator<Product>, Serializable {
+public class Product implements Comparator<Product> {
     private int id;
     private String name;
     private int price;
@@ -53,5 +53,9 @@ public class Product implements Comparator<Product>, Serializable {
     @Override
     public int compare(Product o1, Product o2) {
         return 0;
+    }
+
+    public String convertToString() {
+        return this.id + "," + this.name + "," + this.price;
     }
 }

@@ -1,45 +1,73 @@
 package ss12.thuc_hanh.bai_tap_1.repository;
 
+import ss12.thuc_hanh.bai_tap_1.common.ReadAndWriteFile;
 import ss12.thuc_hanh.bai_tap_1.enity.Product;
 
-import java.io.*;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class ProductRepository implements IProductRepository {
-    private static final List<Product> products = new ArrayList<>();
+    private static final String PRODUCT_FILE = "D:\\codegym\\module2\\src\\ss12\\thuc_hanh\\bai_tap_1\\data\\product.csv";
+    private static final boolean APPEND = true;
+    private static final boolean NOT_APPEND = false;
+
+    public List<String> convertToStringListArray(List<Product> productList) {
+        List<String> stringList = new ArrayList<>();
+        for (Product product : productList) {
+            stringList.add(product.convertToString());
+        }
+        return stringList;
+    }
 
     @Override
     public List<Product> findAll() {
-        ghiFile(products);
-        return docFile();
+        List<Product> productList = new ArrayList<>();
+        List<String> stringList = ReadAndWriteFile.readFileCSV(PRODUCT_FILE);
+        for (String string : stringList) {
+            String[] line = string.split(",");
+            int id = Integer.parseInt(line[0]);
+            String name = line[1];
+            int price = Integer.parseInt(line[2]);
+            productList.add(new Product(id, name, price));
+        }
+        return productList;
     }
 
     @Override
     public void add(Product product) {
-        ghiFile(products);
-        products.add(product);
+        List<String> stringList = new ArrayList<>();
+        stringList.add(product.convertToString());
+        ReadAndWriteFile.writeFileCSV(PRODUCT_FILE, stringList, APPEND);
     }
 
     @Override
-    public Product edit(Product product) {
-        ghiFile(products);
-        return product;
+    public void edit(int id, Product product) {
+        List<Product> productList = findAll();
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getId() == id) {
+                productList.get(i).setId(product.getId());
+                productList.get(i).setName(product.getName());
+                productList.get(i).setPrice(product.getPrice());
+            }
+        }
+        List<String> stringList = convertToStringListArray(productList);
+        ReadAndWriteFile.writeFileCSV(PRODUCT_FILE, stringList, NOT_APPEND);
     }
 
     @Override
     public void delete(int id) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id) {
-                products.remove(products.get(i));
+        List<Product> productList = findAll();
+        for (int i = 0; i < productList.size(); i++) {
+            if (id == productList.get(i).getId()) {
+                productList.remove(i);
                 break;
-            } else {
-                System.out.println("Is not find ID");
             }
         }
+        List<String> stringList = convertToStringListArray(productList);
+        ReadAndWriteFile.writeFileCSV(PRODUCT_FILE, stringList, NOT_APPEND);
     }
-
     @Override
     public void ascendingOder(List<Product> products) {
         products.sort(new Comparator<Product>() {
@@ -58,42 +86,5 @@ public class ProductRepository implements IProductRepository {
                 return o2.getPrice() - o1.getPrice();
             }
         });
-    }
-
-    public void ghiFile(List<Product> products) {
-        try {
-            FileWriter fileWriter = new FileWriter("src/ss12/thuc_hanh/bai_tap_1/product.txt");
-            if(products.isEmpty()){
-                products.add(new Product(1, "But Chi", 10000));
-                products.add(new Product(2, "Sach", 12000));
-                products.add(new Product(3, "But Xoa", 5000));
-            }
-            for (Product product : products) {
-                fileWriter.write("id:" + product.getId() + " ,name:" + product.getName() +
-                        " ,price:" + product.getPrice() + "\n");
-            }
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("Lỗi ghi file: " + e.getMessage());
-        }
-    }
-
-    public List<Product> docFile() {
-        try {
-            BufferedReader bufferedReader = new BufferedReader
-                    (new FileReader("src/ss12/thuc_hanh/bai_tap_1/product.txt"));
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] property = line.split(",");
-                int id = Integer.parseInt(property[0]);
-                String name = property[1];
-                int price = Integer.parseInt(property[2]);
-                products.add(new Product(id, name, price));
-            }
-            bufferedReader.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return products;
     }
 }

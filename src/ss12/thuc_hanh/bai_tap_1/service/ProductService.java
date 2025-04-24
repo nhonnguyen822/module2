@@ -20,13 +20,20 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product edit(Product product) {
-        return productRepository.edit(product);
+    public void edit(int id, Product product) {
+        productRepository.edit(id, product);
     }
 
     @Override
-    public void delete(int id) {
-        productRepository.delete(id);
+    public boolean delete(int id) {
+        List<Product> productList = productRepository.findAll();
+        for (int i = 0; i < productList.size(); i++) {
+            if (id == productList.get(i).getId()) {
+                productRepository.delete(id);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

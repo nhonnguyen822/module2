@@ -1,13 +1,11 @@
 package ss8.service;
 
 import ss8.entity.Car;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ICarService {
-    ArrayList<Car> findAll();
+    List<Car> findAll();
 
-    void display(ArrayList<Car> cars);
 
     void add(Car car);
 }

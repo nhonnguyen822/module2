@@ -12,7 +12,9 @@ import ss8.view.CarView;
 import ss8.view.MotorView;
 import ss8.view.TruckView;
 import ss8.view.VehicleView;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ControllerManagementVehicle {
@@ -71,16 +73,18 @@ public class ControllerManagementVehicle {
         int chose = Integer.parseInt(scanner.nextLine());
         switch (chose) {
             case 1:
-                ArrayList<Truck> trucks = truckService.findAll();
-                truckService.display(trucks);
+                List<Truck> trucks = truckService.findAll();
+                TruckView.display(trucks);
                 break;
             case 2:
-                ArrayList<Car> cars = carSevice.findAll();
-                carSevice.display(cars);
+                List<Car> cars = carSevice.findAll();
+                CarView.display(cars);
+
                 break;
             case 3:
-                ArrayList<Motor> motors = motorService.findAll();
-                motorService.display(motors);
+                List<Motor> motors = motorService.findAll();
+                MotorView.display(motors);
+
         }
     }
 

@@ -3,14 +3,13 @@ package ss8.service;
 import ss8.entity.Vehicle;
 import ss8.repository.IVehicleRepository;
 import ss8.repository.VehicleRepository;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleService implements IVehicleService {
     private IVehicleRepository vehicleRepository = new VehicleRepository();
 
     @Override
-    public ArrayList<Vehicle> findAdd() {
+    public List<Vehicle> findAdd() {
         return vehicleRepository.findAdd();
     }
 

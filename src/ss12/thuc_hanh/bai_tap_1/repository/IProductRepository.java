@@ -8,7 +8,7 @@ public interface IProductRepository {
     List<Product> findAll();
     void add(Product product);
 
-    Product edit(Product product);
+    void edit(int id,Product product);
 
     void delete(int id);
     void ascendingOder(List<Product> products);

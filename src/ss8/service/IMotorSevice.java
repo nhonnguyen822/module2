@@ -1,11 +1,10 @@
 package ss8.service;
 
 import ss8.entity.Motor;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IMotorSevice {
-    ArrayList<Motor>findAll();
+    List<Motor> findAll();
 
     void add(Motor motor);
-    void display(ArrayList<Motor> motors);
 }

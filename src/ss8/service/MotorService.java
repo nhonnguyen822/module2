@@ -3,14 +3,13 @@ package ss8.service;
 import ss8.entity.Motor;
 import ss8.repository.IMotorRepository;
 import ss8.repository.MotorRepository;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class MotorService implements IMotorSevice {
     private IMotorRepository motorRepository = new MotorRepository();
 
     @Override
-    public ArrayList<Motor> findAll() {
+    public List<Motor> findAll() {
         return motorRepository.finalAll();
     }
 
@@ -19,8 +18,4 @@ public class MotorService implements IMotorSevice {
         motorRepository.add(motor);
     }
 
-    @Override
-    public void display(ArrayList<Motor> motors) {
-        motorRepository.display(motors);
-    }
 }

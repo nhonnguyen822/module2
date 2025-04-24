@@ -9,9 +9,9 @@ public interface IProductService {
 
     void add(Product product);
 
-    Product edit(Product product);
+    void edit(int id,Product product);
 
-    void delete(int id);
+    boolean delete(int id);
 
     void ascendingOder(List<Product> products);
 
