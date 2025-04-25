@@ -13,7 +13,6 @@ import ss8.view.MotorView;
 import ss8.view.TruckView;
 import ss8.view.VehicleView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -58,7 +57,7 @@ public class ControllerManagementVehicle {
         } while (true);
     }
 
-    private static CarSevice carSevice = new CarSevice();
+    private static CarSevice carService = new CarSevice();
     private static TruckService truckService = new TruckService();
     private static MotorService motorService = new MotorService();
 
@@ -77,7 +76,7 @@ public class ControllerManagementVehicle {
                 TruckView.display(trucks);
                 break;
             case 2:
-                List<Car> cars = carSevice.findAll();
+                List<Car> cars = carService.findAll();
                 CarView.display(cars);
 
                 break;
@@ -104,7 +103,7 @@ public class ControllerManagementVehicle {
                 break;
             case 2:
                 Car car = CarView.inputDataForCar();
-                carSevice.add(car);
+                carService.add(car);
                 break;
             case 3:
                 Motor motor = MotorView.inputDataForMotor();

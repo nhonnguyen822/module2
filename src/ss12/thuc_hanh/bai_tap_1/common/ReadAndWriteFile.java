@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAndWriteFile {
+public class ReadAndWriteFile<P> {
     public static void writeFileCSV(String pathFile, List<String> stringList, boolean append) {
         File file = new File(pathFile);
         try (FileWriter fileWriter = new FileWriter(file, append);
