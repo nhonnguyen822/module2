@@ -15,9 +15,9 @@ public enum TrinhDo {
         return trinhDo;
     }
 
-    public static TrinhDo fromString(String input) {
+    public static TrinhDo fromToString(String input) {
         for (TrinhDo trinhDo1 : TrinhDo.values()) {
-            if (trinhDo1.trinhDo.equalsIgnoreCase(input.trim())) {
+            if (trinhDo1.getTrinhDo().equalsIgnoreCase(input.trim())) {
                 return trinhDo1;
             }
         }

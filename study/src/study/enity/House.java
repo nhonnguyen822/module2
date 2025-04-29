@@ -1,50 +1,46 @@
 package study.enity;
 
-import study.common.KieuThue;
+import study.common.RentalType;
 
 import java.util.Objects;
 
 public class House extends Facility {
-    private String tieuChuanPhong;
-    private int soTang;
+    private String roomStandard;
+    private int numberOfFloors;
 
     public House() {
     }
 
-    public House(String tieuChuanPhong, int soTang) {
-        this.tieuChuanPhong = tieuChuanPhong;
-        this.soTang = soTang;
+
+    public House(String facilityCode, String facilityName, double usableArea, int rentalCost,
+                 int maxOfPeople, RentalType rentalType, String roomStandard, int numberOfFloors) {
+        super(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType);
+        this.roomStandard = roomStandard;
+        this.numberOfFloors = numberOfFloors;
     }
 
-    public House(String maDV, String tenDV, double dienTichSuDung, int chiPhiThue,
-                 int soLuongNguoiToiDa, KieuThue kieuThue, String tieuChuanPhong, int soTang) {
-        super(maDV, tenDV, dienTichSuDung, chiPhiThue, soLuongNguoiToiDa, kieuThue);
-        this.tieuChuanPhong = tieuChuanPhong;
-        this.soTang = soTang;
+    public String getRoomStandard() {
+        return roomStandard;
     }
 
-    public String getTieuChuanPhong() {
-        return tieuChuanPhong;
+    public void setRoomStandard(String roomStandard) {
+        this.roomStandard = roomStandard;
     }
 
-    public void setTieuChuanPhong(String tieuChuanPhong) {
-        this.tieuChuanPhong = tieuChuanPhong;
+    public int getNumberOfFloors() {
+        return numberOfFloors;
     }
 
-    public int getSoTang() {
-        return soTang;
-    }
-
-    public void setSoTang(int soTang) {
-        this.soTang = soTang;
+    public void setNumberOfFloors(int numberOfFloors) {
+        this.numberOfFloors = numberOfFloors;
     }
 
     @Override
     public String toString() {
         return "House{" +
                 super.toString() +
-                "tieuChuanPhong='" + tieuChuanPhong + '\'' +
-                ", soTang=" + soTang +
+                "tieuChuanPhong='" + roomStandard + '\'' +
+                ", soTang=" + numberOfFloors +
                 '}';
     }
 
@@ -53,11 +49,15 @@ public class House extends Facility {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         House house = (House) object;
-        return soTang == house.soTang && Objects.equals(tieuChuanPhong, house.tieuChuanPhong);
+        return numberOfFloors == house.numberOfFloors && Objects.equals(roomStandard, house.roomStandard);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tieuChuanPhong, soTang);
+        return Objects.hash(super.hashCode(), roomStandard, numberOfFloors);
+    }
+
+    public String convertToString() {
+        return super.convertToString() + "," + this.roomStandard + "," + this.numberOfFloors;
     }
 }

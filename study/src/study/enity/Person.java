@@ -1,78 +1,77 @@
 package study.enity;
 
-import study.common.GioiTinh;
+import study.common.Gender;
 
 import java.time.LocalDate;
 
 public abstract class Person {
-    private String ma;
-    private String ten;
-    private LocalDate ngaySinh;
-    private GioiTinh gioiTinh;
-    private String soCMND;
-    private String soDT;
+    private String id;
+    private String name;
+    private LocalDate birtDay;
+    private Gender gender;
+    private String numberCMND;
+    private String numberPhone;
     private String email;
 
     public Person() {
     }
 
-    public Person(String ma, String ten, LocalDate ngaySinh, GioiTinh gioiTinh,
-                  String soCMND, String soDT, String email) {
-        this.ma = ma;
-        this.ten = ten;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.soCMND = soCMND;
-        this.soDT = soDT;
+    public Person(String id, String name, LocalDate birtDay, Gender gender, String numberCMND, String numberPhone, String email) {
+        this.id = id;
+        this.name = name;
+        this.birtDay = birtDay;
+        this.gender = gender;
+        this.numberCMND = numberCMND;
+        this.numberPhone = numberPhone;
         this.email = email;
     }
 
-    public String getMa() {
-        return ma;
+    public String getId() {
+        return id;
     }
 
-    public void setMa(String ma) {
-        this.ma = ma;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getTen() {
-        return ten;
+    public String getName() {
+        return name;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
+    public LocalDate getBirtDay() {
+        return birtDay;
     }
 
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
+    public void setBirtDay(LocalDate birtDay) {
+        this.birtDay = birtDay;
     }
 
-    public GioiTinh getGioiTinh() {
-        return gioiTinh;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setGioiTinh(GioiTinh gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
-    public String getSoCMND() {
-        return soCMND;
+    public String getNumberCMND() {
+        return numberCMND;
     }
 
-    public void setSoCMND(String soCMND) {
-        this.soCMND = soCMND;
+    public void setNumberCMND(String numberCMND) {
+        this.numberCMND = numberCMND;
     }
 
-    public String getSoDT() {
-        return soDT;
+    public String getNumberPhone() {
+        return numberPhone;
     }
 
-    public void setSoDT(String soDT) {
-        this.soDT = soDT;
+    public void setNumberPhone(String numberPhone) {
+        this.numberPhone = numberPhone;
     }
 
     public String getEmail() {
@@ -86,12 +85,12 @@ public abstract class Person {
     @Override
     public String toString() {
         return
-                "ma='" + ma + '\'' +
-                ", ten='" + ten + '\'' +
-                ", ngaySinh=" + ngaySinh +
-                ", gioiTinh='" + gioiTinh + '\'' +
-                ", soCMND='" + soCMND + '\'' +
-                ", soDT='" + soDT + '\'' +
+                "ma='" + id + '\'' +
+                ", ten='" + name + '\'' +
+                ", ngaySinh=" + birtDay +
+                ", gioiTinh='" + gender + '\'' +
+                ", soCMND='" + numberCMND + '\'' +
+                ", soDT='" + numberPhone + '\'' +
                 ", email='" + email + '\''
                 ;
     }

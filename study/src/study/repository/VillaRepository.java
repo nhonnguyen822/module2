@@ -1,16 +1,13 @@
 package study.repository;
 
-import study.common.KieuThue;
+import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
 import study.enity.Villa;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class VillaRepository implements IVillaRepository {
-    private static final String VILLA_FILE = "src/study/enity/Villa.java";
+    private static final String VILLA_FILE = "src/study/data/villa.csv";
     private static final boolean NOT_APPEND = false;
 
 
@@ -18,8 +15,9 @@ public class VillaRepository implements IVillaRepository {
         List<String> stringList = new ArrayList<>();
         for (Map.Entry<Villa, Integer> villaIntegerEntry : villaIntegerMap.entrySet()) {
             Villa villa = villaIntegerEntry.getKey();
+            String stringVilla = villa.convertToString();
             int soLanSuDung = villaIntegerEntry.getValue();
-            stringList.add(villa + "," + soLanSuDung);
+            stringList.add(stringVilla + "," + soLanSuDung);
         }
         return stringList;
     }
@@ -27,20 +25,30 @@ public class VillaRepository implements IVillaRepository {
     private static Map<Villa, Integer> convertToMapList() {
         Map<Villa, Integer> villaIntegerMap = new LinkedHashMap<>();
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(VILLA_FILE);
-        for (String string : stringList) {
-            String[] line = string.split(",");
-            String maDV = line[0];
-            String tenDV = line[1];
-            double dienTichSuDung = Double.parseDouble(line[2]);
-            int chiPhiThue = Integer.parseInt(line[3]);
-            int soLuongNguoiToiDa = Integer.parseInt(line[4]);
-            KieuThue kieuThue = KieuThue.valueOf(line[5]);
-            String tieuChuanPhong = line[6];
-            double dienTichHoBoi = Double.parseDouble(line[7]);
-            int soLanSuDung = Integer.parseInt(line[8]);
-            Villa villa = new Villa(maDV, tenDV, dienTichSuDung, chiPhiThue, soLuongNguoiToiDa, kieuThue, tieuChuanPhong, dienTichHoBoi);
-            villaIntegerMap.put(villa, soLanSuDung);
+        if (!stringList.isEmpty()) {
+            for (String string : stringList) {
+                String[] line = string.split(",");
+                if (line.length == 9) {
+                    try {
+                        String facilityCode = line[0];
+                        String facilityName = line[1];
+                        double usableArea = Double.parseDouble(line[2]);
+                        int rentalCost = Integer.parseInt(line[3]);
+                        int maxOfPeople = Integer.parseInt(line[4]);
+                        RentalType rentalType = RentalType.valueOf(line[5]);
+                        String roomStandard = line[6];
+                        double poolArea = Double.parseDouble(line[7]);
+                        int numberOfUses = Integer.parseInt(line[8]);
+                        Villa villa = new Villa(facilityCode, facilityName, usableArea,
+                                rentalCost, maxOfPeople, rentalType, roomStandard, poolArea);
+                        villaIntegerMap.put(villa, numberOfUses);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
+
         return villaIntegerMap;
     }
 

@@ -16,7 +16,7 @@ public class FacilityService implements IFacilityService {
     }
 
     @Override
-    public void add(Facility dichVu) {
-        dichVuRepository.add(dichVu);
+    public void add(Facility facility) {
+        dichVuRepository.add(facility);
     }
 }

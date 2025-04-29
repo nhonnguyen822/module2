@@ -7,5 +7,5 @@ import java.util.Map;
 public interface IFacilityService {
     Map<Facility, Integer> findAll();
 
-    void add(Facility dichVu);
+    void add(Facility facility);
 }

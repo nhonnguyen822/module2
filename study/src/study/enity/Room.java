@@ -1,37 +1,37 @@
 package study.enity;
 
-import study.common.KieuThue;
+import study.common.RentalType;
 
 import java.util.Objects;
 
 public class Room extends Facility {
-    private String dichVuMienPhi;
+    private String freeService;
 
     public Room() {
     }
 
-    public Room(String dichVuMienPhi) {
-        this.dichVuMienPhi = dichVuMienPhi;
+    public Room(String freeService) {
+        this.freeService = freeService;
     }
 
-    public Room(String maDV, String tenDV, double dienTichSuDung, int chiPhiThue, int soLuongNguoiToiDa, KieuThue kieuThue, String dichVuMienPhi) {
-        super(maDV, tenDV, dienTichSuDung, chiPhiThue, soLuongNguoiToiDa, kieuThue);
-        this.dichVuMienPhi = dichVuMienPhi;
+    public Room(String facilityCode, String facilityName, double usableArea, int rentalCost, int maxOfPeople, RentalType rentalType, String freeService) {
+        super(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType);
+        this.freeService = freeService;
     }
 
-    public String getDichVuMienPhi() {
-        return dichVuMienPhi;
+    public String getFreeService() {
+        return freeService;
     }
 
-    public void setDichVuMienPhi(String dichVuMienPhi) {
-        this.dichVuMienPhi = dichVuMienPhi;
+    public void setFreeService(String freeService) {
+        this.freeService = freeService;
     }
 
     @Override
     public String toString() {
         return "Room{" +
-                super.toString()+
-                "dichVuMienPhi='" + dichVuMienPhi + '\'' +
+                super.toString() +
+                "dichVuMienPhi='" + freeService + '\'' +
                 '}';
     }
 
@@ -40,11 +40,16 @@ public class Room extends Facility {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         Room room = (Room) object;
-        return Objects.equals(dichVuMienPhi, room.dichVuMienPhi);
+        return Objects.equals(freeService, room.freeService);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), dichVuMienPhi);
+        return Objects.hash(super.hashCode(), freeService);
     }
+
+    public String convertToString() {
+        return super.convertToString() + "," + this.freeService;
+    }
+
 }

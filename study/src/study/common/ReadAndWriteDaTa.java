@@ -15,7 +15,7 @@ public class ReadAndWriteDaTa {
             }
 
         } catch (IOException e) {
-            System.out.println("lỗi ghi file");
+            e.printStackTrace();
         }
     }
 
@@ -29,7 +29,7 @@ public class ReadAndWriteDaTa {
                 stringList.add(line);
             }
         } catch (IOException e) {
-            System.out.println("lỗi đọc file");
+            e.printStackTrace();
         }
         return stringList;
     }

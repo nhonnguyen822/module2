@@ -1,10 +1,9 @@
 package study.view;
 
-import study.common.GioiTinh;
+import study.common.Gender;
 import study.common.TrinhDo;
 import study.common.ViTri;
-import study.enity.NhanVien;
-
+import study.enity.Employee;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NhanVienView {
+public class EmployeeView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String nhapMaNV() {
@@ -21,7 +20,7 @@ public class NhanVienView {
     }
 
     //hiển thị danh sach sinh viên
-    public static void display(List<NhanVien> nhanVienList) {
+    public static void display(List<Employee> nhanVienList) {
         for (int i = 0; i < nhanVienList.size(); i++) {
             System.out.println(nhanVienList.get(i));
         }
@@ -29,93 +28,93 @@ public class NhanVienView {
 
     //nhập thông tin nhân viên
 
-    public static NhanVien inputDataKH() {
+    public static Employee inputDataKH() {
         System.out.println("nhập mã nhân viên");
-        String maNV = scanner.nextLine();
+        String id = scanner.nextLine();
         while (true) {
             String regex = "^NV-\\d{4}$";
             Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(maNV);
+            Matcher matcher = pattern.matcher(id);
             if (matcher.matches()) {
                 System.out.println("mã hợp lệ");
                 break;
             } else {
                 System.out.println("mã không hợp lệ");
                 System.out.println("nhập lại mã nhân viên");
-                maNV = scanner.nextLine();
+                id = scanner.nextLine();
             }
         }
         System.out.println("nhập tên nhân viên");
-        String tenNV = scanner.nextLine();
+        String name = scanner.nextLine();
         while (true) {
-            String regex = "^([A-Z][a-z]*)(\\s[A-Z][a-z]*)?(\\s[A-Z][a-z]*)+&";
+            String regex = "^([A-Z][a-z]*)(\\s[A-Z][a-z]*)?(\\s[A-Z][a-z]*)+$";
             Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(tenNV);
+            Matcher matcher = pattern.matcher(name);
             if (matcher.matches()) {
                 System.out.println("tên hợp lệ");
                 break;
             } else {
                 System.out.println("tên không hợp lệ");
                 System.out.println("nhập lại tên nhân viên");
-                tenNV = scanner.nextLine();
+                name = scanner.nextLine();
             }
         }
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yy");
-        LocalDate ngaySinh = null;
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthDay = null;
         while (true) {
             System.out.println("nhập ngày sinh với đinh dạng dd/MM/yy");
             String input = scanner.nextLine();
             try {
-                ngaySinh = LocalDate.parse(input, dateTimeFormatter);
+                birthDay = LocalDate.parse(input, dateTimeFormatter);
                 break;
             } catch (Exception e) {
                 System.out.println("ngày sinh không hợp lệ");
             }
         }
 
-        GioiTinh gioiTinh = null;
-        while (gioiTinh == null) {
+        Gender gender = null;
+        while (gender == null) {
             System.out.println("nhập giới tính");
             String input = scanner.nextLine();
-            gioiTinh = GioiTinh.fromToString(input);
-            if (gioiTinh == null) {
+            gender = Gender.fromToString(input);
+            if (gender == null) {
                 System.out.println("giới tính không hợp lệ vui lòng nhập lại");
             }
         }
         System.out.println("nhập số CMND /CCCD");
-        String soCMND = scanner.nextLine();
+        String numberCMND = scanner.nextLine();
         while (true) {
             String regexCMND = "^\\d{9}(\\d{3})?$";
             Pattern pattern = Pattern.compile(regexCMND);
-            Matcher matcher = pattern.matcher(soCMND);
+            Matcher matcher = pattern.matcher(numberCMND);
             if (matcher.matches()) {
                 System.out.println("số CMND/CCCD hợp lệ");
                 break;
             } else {
                 System.out.println("CMND không hợp lệ");
                 System.out.println("nhập lại số CMND /CCCD");
-                soCMND = scanner.nextLine();
+                numberCMND = scanner.nextLine();
             }
         }
         System.out.println("nhập số điện thoại ");
-        String soDT = scanner.nextLine();
+        String numberPhone = scanner.nextLine();
         while (true) {
             String regexSoDT = "^(\\d{2}-)?(0\\d{9})$";
             Pattern pattern = Pattern.compile(regexSoDT);
-            Matcher matcher = pattern.matcher(soDT);
+            Matcher matcher = pattern.matcher(numberPhone);
             if (matcher.matches()) {
                 System.out.println("số điện thoại hợp lệ");
                 break;
             } else {
                 System.out.println("số điện thoại không hợp lệ");
                 System.out.println("nhập số điện thoại ");
-                soDT = scanner.nextLine();
+                numberPhone = scanner.nextLine();
             }
         }
         System.out.println("nhập email ");
         String email = scanner.nextLine();
         while (true) {
-            String regexEmail = "^[w.-]+@([a-zA-Z]{3,6})\\.[a-zA-Z]{2,6}$";
+            String regexEmail = "^[\\w.-]+@([a-zA-Z]{3,6})\\.[a-zA-Z]{2,6}$";
             Pattern pattern = Pattern.compile(regexEmail);
             Matcher matcher = pattern.matcher(email);
             if (matcher.matches()) {
@@ -131,7 +130,7 @@ public class NhanVienView {
         while (trinhDo == null) {
             System.out.println("nhập trình độ của nhân viên");
             String input = scanner.nextLine();
-            trinhDo = TrinhDo.fromString(input);
+            trinhDo = TrinhDo.fromToString(input);
             if (trinhDo == null) {
                 System.out.println("vui lòng nhập chính xác trình độ ");
             }
@@ -145,18 +144,18 @@ public class NhanVienView {
                 System.out.println("vui lòng nhập chính xác vị trí ");
             }
         }
-        int luong = 0;
+        int salary = 0;
         try {
             System.out.println("nhập lương của nhân viên");
-            luong = Integer.parseInt(scanner.nextLine());
-            while (luong <= 0) {
+            salary = Integer.parseInt(scanner.nextLine());
+            while (salary <= 0) {
                 System.out.println("nhập lương của nhân viên phai lon hon 0");
-                luong = Integer.parseInt(scanner.nextLine());
+                salary = Integer.parseInt(scanner.nextLine());
             }
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         }
 
-        return new NhanVien(maNV, tenNV, ngaySinh, gioiTinh, soCMND, soDT, email, trinhDo, viTri, luong);
+        return new Employee(id, name, birthDay, gender, numberCMND, numberPhone, email, trinhDo, viTri, salary);
     }
 }

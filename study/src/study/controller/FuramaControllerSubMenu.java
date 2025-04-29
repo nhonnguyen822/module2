@@ -1,23 +1,24 @@
 package study.controller;
 
 import study.enity.*;
-import study.repository.HouseRepository;
-import study.repository.IRoomRepository;
 import study.service.*;
 import study.view.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class FuramaControllerSubMenu {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final IKhachHangService khachHangService = new KhachHangService();
-    private static final INhanVienService nhanVienService = new NhanVienService();
+    private static final ICustomerService customerService = new CustomerService();
+    private static final IEmployeeService employeeService = new EmployeeService();
     private static final IFacilityService facilityService = new FacilityService();
     private static final IRoomService roomService = new RoomService();
     private static final IHouseService houseService = new HouseService();
     private static final IVillaService villaService = new VillaService();
+    private static final IBookingServie bookingService = new BookingService();
+
 
     public static void employeeManagement() {
         String exit = "";
@@ -31,17 +32,17 @@ public class FuramaControllerSubMenu {
                 int chose = Integer.parseInt(scanner.nextLine());
                 switch (chose) {
                     case 1:
-                        List<NhanVien> nhanVienList = nhanVienService.findAll();
-                        NhanVienView.display(nhanVienList);
+                        List<Employee> nhanVienList = employeeService.findAll();
+                        EmployeeView.display(nhanVienList);
                         break;
                     case 2:
-                        NhanVien nhanVien = NhanVienView.inputDataKH();
-                        nhanVienService.add(nhanVien);
+                        Employee nhanVien = EmployeeView.inputDataKH();
+                        employeeService.add(nhanVien);
                         break;
                     case 3:
-                        String maNV = KhachHangView.nhapMaKH();
-                        NhanVien nhanVienEdit = NhanVienView.inputDataKH();
-                        nhanVienService.edit(nhanVienEdit, maNV);
+                        String maNV = CustomerView.inputIdCustomer();
+                        Employee nhanVienEdit = EmployeeView.inputDataKH();
+                        employeeService.edit(nhanVienEdit, maNV);
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");
@@ -74,17 +75,17 @@ public class FuramaControllerSubMenu {
                 int chose = Integer.parseInt(scanner.nextLine());
                 switch (chose) {
                     case 1:
-                        List<KhachHang> khachHangList = khachHangService.findAll();
-                        KhachHangView.display(khachHangList);
+                        List<Customer> khachHangList = customerService.findAll();
+                        CustomerView.display(khachHangList);
                         break;
                     case 2:
-                        KhachHang khachHangAdd = KhachHangView.inputDataKH();
-                        khachHangService.add(khachHangAdd);
+                        Customer khachHangAdd = CustomerView.inputDataCustomer();
+                        customerService.add(khachHangAdd);
                         break;
                     case 3:
-                        String maKH = KhachHangView.nhapMaKH();
-                        KhachHang khachHangEdit = KhachHangView.inputDataKH();
-                        khachHangService.edit(khachHangEdit, maKH);
+                        String maKH = CustomerView.inputIdCustomer();
+                        Customer khachHangEdit = CustomerView.inputDataCustomer();
+                        customerService.edit(khachHangEdit, maKH);
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");
@@ -124,6 +125,8 @@ public class FuramaControllerSubMenu {
                         listAddFacility();
                         break;
                     case 3:
+                        Map<Facility, Integer> facilityIntegerMapMaintenance = facilityService.findAll();
+                        FacilityView.displayFacilityMaintenance(facilityIntegerMapMaintenance);
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");
@@ -156,16 +159,16 @@ public class FuramaControllerSubMenu {
                 int chose = Integer.parseInt(scanner.nextLine());
                 switch (chose) {
                     case 1:
+                        Villa villa = VillaView.add();
+                        villaService.add(villa);
+                        break;
+                    case 2:
                         House house = HouseView.add();
                         houseService.add(house);
                         break;
-                    case 2:
+                    case 3:
                         Room room = RoomView.add();
                         roomService.add(room);
-                        break;
-                    case 3:
-                        Villa villa = VillaView.add();
-                        villaService.add(villa);
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");
@@ -201,8 +204,16 @@ public class FuramaControllerSubMenu {
             int chose = Integer.parseInt(scanner.nextLine());
             switch (chose) {
                 case 1:
+                    List<Customer> customerList = customerService.findAll();
+                    Customer customer = BookingView.selectCustomerBooking(customerList);
+                    Map<Facility, Integer> facilityIntegerMap = facilityService.findAll();
+                    Facility facility = BookingView.selectFacilityBooking(facilityIntegerMap);
+                    Booking booking = BookingView.inputDataBooking(customer, facility);
+                    bookingService.add(booking);
                     break;
                 case 2:
+                    Set<Booking> bookingSet = bookingService.findAll();
+                    BookingView.display(bookingSet);
                     break;
                 case 3:
                     break;

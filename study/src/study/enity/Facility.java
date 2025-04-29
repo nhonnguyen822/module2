@@ -1,109 +1,109 @@
 package study.enity;
 
-import study.common.KieuThue;
+import study.common.RentalType;
 
 import java.util.Objects;
 
 public class Facility {
-    private String maDV;
-    private String tenDV;
-    private double dienTichSuDung;
-    private int chiPhiThue;
-    private int soLuongNguoiToiDa;
-    private KieuThue kieuThue;
+    private String facilityCode;
+    private String facilityName;
+    private double usableArea;
+    private int rentalCost;
+    private int maxOfPeople;
+    private RentalType rentalType;
 
     public Facility() {
     }
 
-    public Facility(String maDV, String tenDV, double dienTichSuDung, int chiPhiThue, int soLuongNguoiToiDa, KieuThue kieuThue) {
-        this.maDV = maDV;
-        this.tenDV = tenDV;
-        this.dienTichSuDung = dienTichSuDung;
-        this.chiPhiThue = chiPhiThue;
-        this.soLuongNguoiToiDa = soLuongNguoiToiDa;
-        this.kieuThue = kieuThue;
+    public Facility(String facilityCode, String facilityName, double usableArea, int rentalCost, int maxOfPeople, RentalType rentalType) {
+        this.facilityCode = facilityCode;
+        this.facilityName = facilityName;
+        this.usableArea = usableArea;
+        this.rentalCost = rentalCost;
+        this.maxOfPeople = maxOfPeople;
+        this.rentalType = rentalType;
     }
 
-    public String getMaDV() {
-        return maDV;
+
+    public String getFacilityCode() {
+        return facilityCode;
     }
 
-    public void setMaDV(String maDV) {
-        this.maDV = maDV;
+    public void setFacilityCode(String facilityCode) {
+        this.facilityCode = facilityCode;
     }
 
-    public String getTenDV() {
-        return tenDV;
+    public String getFacilityName() {
+        return facilityName;
     }
 
-    public void setTenDV(String tenDV) {
-        this.tenDV = tenDV;
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
     }
 
-    public double getDienTichSuDung() {
-        return dienTichSuDung;
+    public double getUsableArea() {
+        return usableArea;
     }
 
-    public void setDienTichSuDung(int dienTichSuDung) {
-        this.dienTichSuDung = dienTichSuDung;
+    public void setUsableArea(double usableArea) {
+        this.usableArea = usableArea;
     }
 
-    public int getChiPhiThue() {
-        return chiPhiThue;
+    public int getRentalCost() {
+        return rentalCost;
     }
 
-    public void setChiPhiThue(int chiPhiThue) {
-        this.chiPhiThue = chiPhiThue;
+    public void setRentalCost(int rentalCost) {
+        this.rentalCost = rentalCost;
     }
 
-    public int getSoLuongNguoiToiDa() {
-        return soLuongNguoiToiDa;
+    public int getMaxOfPeople() {
+        return maxOfPeople;
     }
 
-    public void setSoLuongNguoiToiDa(int soLuongNguoiToiDa) {
-        this.soLuongNguoiToiDa = soLuongNguoiToiDa;
+    public void setMaxOfPeople(int maxOfPeople) {
+        this.maxOfPeople = maxOfPeople;
     }
 
-    public KieuThue getKieuThue() {
-        return kieuThue;
+    public RentalType getRentalType() {
+        return rentalType;
     }
 
-    public void setKieuThue(KieuThue kieuThue) {
-        this.kieuThue = kieuThue;
+    public void setRentalType(RentalType rentalType) {
+        this.rentalType = rentalType;
     }
 
     @Override
     public String toString() {
         return
-                "maDV='" + maDV + '\'' +
-                        ", tenDV='" + tenDV + '\'' +
-                        ", dienTichSuDung=" + dienTichSuDung +
-                        ", chiPhiThue=" + chiPhiThue +
-                        ", soLuongNguoiToiDa=" + soLuongNguoiToiDa +
-                        ", kieuThue=" + kieuThue
+                "maDV='" + facilityCode + '\'' +
+                        ", tenDV='" + facilityName + '\'' +
+                        ", dienTichSuDung=" + usableArea +
+                        ", chiPhiThue=" + rentalCost +
+                        ", soLuongNguoiToiDa=" + maxOfPeople +
+                        ", kieuThue=" + rentalType
                 ;
     }
 
-    public String convertToString() {
-        return this.maDV + "," + this.tenDV +"," + this.dienTichSuDung +"," +
-                this.chiPhiThue + "," +this.soLuongNguoiToiDa +"," + this.kieuThue;
-    }
-
-    public void setDienTichSuDung(double dienTichSuDung) {
-        this.dienTichSuDung = dienTichSuDung;
+    public void setDienTichSuDung(double usableArea) {
+        this.usableArea = usableArea;
     }
 
     @Override
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
         Facility facility = (Facility) object;
-        return Double.compare(dienTichSuDung, facility.dienTichSuDung) == 0 && chiPhiThue == facility.chiPhiThue
-                && soLuongNguoiToiDa == facility.soLuongNguoiToiDa && Objects.equals(maDV, facility.maDV)
-                && Objects.equals(tenDV, facility.tenDV) && kieuThue == facility.kieuThue;
+        return Double.compare(usableArea, facility.usableArea) == 0 && rentalCost == facility.rentalCost
+                && maxOfPeople == facility.maxOfPeople && Objects.equals(facilityCode, facility.facilityCode)
+                && Objects.equals(facilityName, facility.facilityName) && rentalType == facility.rentalType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maDV, tenDV, dienTichSuDung, chiPhiThue, soLuongNguoiToiDa, kieuThue);
+        return Objects.hash(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType);
+    }
+
+    public String convertToString() {
+        return this.facilityCode +","+ this.facilityName +","+this.usableArea +","+ this.rentalCost +","+ this.maxOfPeople +","+ this.rentalType;
     }
 }
