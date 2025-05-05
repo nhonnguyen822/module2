@@ -2,6 +2,7 @@ package study.repository;
 
 import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
+import study.enity.House;
 import study.enity.Room;
 
 import java.util.ArrayList;
@@ -59,6 +60,16 @@ public class RoomRepository implements IRoomRepository {
     public void add(Room room) {
         Map<Room, Integer> roomIntegerMap = convertToMapList();
         roomIntegerMap.put(room, 0);
+        List<String> stringList = convertToListString(roomIntegerMap);
+        ReadAndWriteDaTa.writeFileCSV(ROOM_FILE, stringList, NOT_APPEND);
+    }
+
+    @Override
+    public void edit(Room room, int usage) {
+        Map<Room, Integer> roomIntegerMap = convertToMapList();
+        if (roomIntegerMap.containsKey(room)) {
+            roomIntegerMap.put(room, usage);
+        }
         List<String> stringList = convertToListString(roomIntegerMap);
         ReadAndWriteDaTa.writeFileCSV(ROOM_FILE, stringList, NOT_APPEND);
     }

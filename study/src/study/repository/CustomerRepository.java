@@ -13,7 +13,7 @@ public class CustomerRepository implements ICustomerRepository {
     private static final String CUSTOMER_FILE = "src/study/data/khach_hang.csv";
     private static final boolean NOT_APPEND = false;
 
-    public static List<String> convertToStringList(List<Customer> customerList) {
+    public List<String> convertToStringList(List<Customer> customerList) {
         List<String> stringList = new ArrayList<>();
         for (int i = 0; i < customerList.size(); i++) {
             stringList.add(customerList.get(i).convertToString());
@@ -21,11 +21,8 @@ public class CustomerRepository implements ICustomerRepository {
         return stringList;
     }
 
-
-    @Override
-    public List<Customer> findAll() {
+    public List<Customer> convertToCustomerList(List<String> stringList) {
         List<Customer> customerList = new ArrayList<>();
-        List<String> stringList = ReadAndWriteDaTa.readFileCSV(CUSTOMER_FILE);
         for (int i = 0; i < stringList.size(); i++) {
             String[] line = stringList.get(i).split(",");
             if (line.length == 9) {
@@ -39,6 +36,7 @@ public class CustomerRepository implements ICustomerRepository {
                     String email = line[6];
                     CustomerType customerType = CustomerType.valueOf(line[7]);
                     String address = line[8];
+
                     customerList.add(new Customer(id, name, birthDay, gender, numberCMND, numberPhone, email, customerType, address));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -46,6 +44,12 @@ public class CustomerRepository implements ICustomerRepository {
             }
         }
         return customerList;
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        List<String> stringList = ReadAndWriteDaTa.readFileCSV(CUSTOMER_FILE);
+        return convertToCustomerList(stringList);
     }
 
     @Override
@@ -61,6 +65,7 @@ public class CustomerRepository implements ICustomerRepository {
         List<Customer> customerList = findAll();
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getId().equals(maKH)) {
+                customerList.get(i).setId(khachHang.getId());
                 customerList.get(i).setName(khachHang.getName());
                 customerList.get(i).setBirtDay(khachHang.getBirtDay());
                 customerList.get(i).setGender(khachHang.getGender());

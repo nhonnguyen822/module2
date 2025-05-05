@@ -4,20 +4,16 @@ import study.enity.*;
 import study.service.*;
 import study.view.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class FuramaControllerSubMenu {
     private static final Scanner scanner = new Scanner(System.in);
     private static final ICustomerService customerService = new CustomerService();
     private static final IEmployeeService employeeService = new EmployeeService();
-    private static final IFacilityService facilityService = new FacilityService();
-    private static final IRoomService roomService = new RoomService();
-    private static final IHouseService houseService = new HouseService();
-    private static final IVillaService villaService = new VillaService();
+    private static final IFacilityService<Facility> facilityService = new FacilityService();
     private static final IBookingServie bookingService = new BookingService();
+    private static final IContractsService contractsService = new ContractsService();
+    private static final IPromotionService promotionService = new PromotionService();
 
 
     public static void employeeManagement() {
@@ -36,12 +32,12 @@ public class FuramaControllerSubMenu {
                         EmployeeView.display(nhanVienList);
                         break;
                     case 2:
-                        Employee nhanVien = EmployeeView.inputDataKH();
+                        Employee nhanVien = EmployeeView.inputDataNV();
                         employeeService.add(nhanVien);
                         break;
                     case 3:
-                        String maNV = CustomerView.inputIdCustomer();
-                        Employee nhanVienEdit = EmployeeView.inputDataKH();
+                        String maNV = EmployeeView.nhapMaNV();
+                        Employee nhanVienEdit = EmployeeView.inputDataNV();
                         employeeService.edit(nhanVienEdit, maNV);
                         break;
                     case 4:
@@ -160,15 +156,15 @@ public class FuramaControllerSubMenu {
                 switch (chose) {
                     case 1:
                         Villa villa = VillaView.add();
-                        villaService.add(villa);
+                        facilityService.add(villa);
                         break;
                     case 2:
                         House house = HouseView.add();
-                        houseService.add(house);
+                        facilityService.add(house);
                         break;
                     case 3:
                         Room room = RoomView.add();
-                        roomService.add(room);
+                        facilityService.add(room);
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");
@@ -216,10 +212,37 @@ public class FuramaControllerSubMenu {
                     BookingView.display(bookingSet);
                     break;
                 case 3:
+                    Set<Booking> bookings = bookingService.findAll();
+                    Queue<Booking> bookingQueue = contractsService.convertBookingFromSetToQueue(bookings);
+                    ContractView.displayListBookingNeedContract(bookingQueue);
+                    Contracts contracts = null;
+                    for (Booking booking1 : bookingQueue) {
+                        contracts = ContractView.inputDataCreatContract(booking1);
+                        contractsService.add(contracts);
+                        break;
+                    }
                     break;
                 case 4:
+                    Queue<Contracts> contractsQueue = contractsService.findAll();
+                    ContractView.display(contractsQueue);
                     break;
                 case 5:
+                    Queue<Contracts> contractsServiceAll = contractsService.findAll();
+                    String contractId = ContractView.inputContractsId();
+                    Contracts contractsEdit = null;
+                    boolean flag = false;
+                    for (Contracts contract : contractsServiceAll) {
+                        if (contractId.equals(contract.getContractId())) {
+                            contractsEdit = ContractView.edit(contract);
+                            contractsService.edit(contractsEdit);
+                            flag = true;
+                            System.out.println("đổi thành công");
+                            break;
+                        }
+                    }
+                    if (!flag) {
+                        System.out.println("không tìm thấy hợp đồng muốn thay đổi");
+                    }
                     break;
                 case 6:
                     System.out.println("bạn chọn quay trở lại ,yes or no");
@@ -245,8 +268,16 @@ public class FuramaControllerSubMenu {
             int chose = Integer.parseInt(scanner.nextLine());
             switch (chose) {
                 case 1:
+                    int yearBookingFacility = PromotionView.inputYear();
+                    List<Customer> customerListBookingFacility = promotionService.findAll(yearBookingFacility);
+                    PromotionView.display(customerListBookingFacility);
                     break;
                 case 2:
+                    int quantity10 = PromotionView.quantityVoucher10();
+                    int quantity20 = PromotionView.quantityVoucher20();
+                    int quantity50 = PromotionView.quantityVoucher50();
+                    List<Customer> customerList = promotionService.findCustomerVoucher();
+                    PromotionView.displayListCustomerVoucher(customerList, quantity10, quantity20, quantity50);
                     break;
                 case 3:
                     System.out.println("bạn chọn quay trở lại ,yes or no");

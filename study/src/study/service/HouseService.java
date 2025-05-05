@@ -18,4 +18,9 @@ public class HouseService implements IHouseService {
     public void add(House house) {
         houseRepository.add(house);
     }
+
+    @Override
+    public void edit(House house, int usage) {
+        houseRepository.edit(house, usage);
+    }
 }

@@ -4,6 +4,8 @@ import study.enity.Room;
 import study.repository.IRoomRepository;
 import study.repository.RoomRepository;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RoomService implements IRoomService {
@@ -18,4 +20,10 @@ public class RoomService implements IRoomService {
     public void add(Room room) {
         roomRepository.add(room);
     }
+
+    @Override
+    public void edit(Room room, int usage) {
+        roomRepository.edit(room, usage);
+    }
+
 }

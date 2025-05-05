@@ -1,5 +1,6 @@
 package study.service;
 
+import study.enity.Room;
 import study.enity.Villa;
 import study.repository.IVillaRepository;
 import study.repository.VillaRepository;
@@ -18,4 +19,10 @@ public class VillaService implements IVillaService {
     public void add(Villa villa) {
         villaRepository.add(villa);
     }
+
+    @Override
+    public void edit(Villa villa, int usage) {
+        villaRepository.edit(villa,usage);
+    }
+
 }

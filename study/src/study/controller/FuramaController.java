@@ -1,6 +1,6 @@
 package study.controller;
 
-import java.text.ParseException;
+
 import java.util.Scanner;
 
 public class FuramaController {
@@ -52,8 +52,6 @@ public class FuramaController {
             } catch (NumberFormatException e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
     }
 }

@@ -2,6 +2,7 @@ package study.repository;
 
 import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
+import study.enity.House;
 import study.enity.Villa;
 
 import java.util.*;
@@ -11,7 +12,7 @@ public class VillaRepository implements IVillaRepository {
     private static final boolean NOT_APPEND = false;
 
 
-    private static List<String> convertToListString(Map<Villa, Integer> villaIntegerMap) {
+    public final List<String> convertToListString(Map<Villa, Integer> villaIntegerMap) {
         List<String> stringList = new ArrayList<>();
         for (Map.Entry<Villa, Integer> villaIntegerEntry : villaIntegerMap.entrySet()) {
             Villa villa = villaIntegerEntry.getKey();
@@ -22,7 +23,7 @@ public class VillaRepository implements IVillaRepository {
         return stringList;
     }
 
-    private static Map<Villa, Integer> convertToMapList() {
+    public final Map<Villa, Integer> convertToMapList() {
         Map<Villa, Integer> villaIntegerMap = new LinkedHashMap<>();
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(VILLA_FILE);
         if (!stringList.isEmpty()) {
@@ -64,4 +65,16 @@ public class VillaRepository implements IVillaRepository {
         List<String> stringList = convertToListString(villaIntegerMap);
         ReadAndWriteDaTa.writeFileCSV(VILLA_FILE, stringList, NOT_APPEND);
     }
+
+    @Override
+    public void edit(Villa villa, int usage) {
+        Map<Villa, Integer> villaIntegerMap = convertToMapList();
+        if(villaIntegerMap.containsKey(villa)){
+            villaIntegerMap.put(villa,usage);
+        }
+        List<String> stringList = convertToListString(villaIntegerMap);
+        ReadAndWriteDaTa.writeFileCSV(VILLA_FILE, stringList, NOT_APPEND);
+    }
+
+
 }

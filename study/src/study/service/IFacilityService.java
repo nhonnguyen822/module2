@@ -4,8 +4,11 @@ import study.enity.Facility;
 
 import java.util.Map;
 
-public interface IFacilityService {
-    Map<Facility, Integer> findAll();
+public interface IFacilityService<T> {
+    Map<T, Integer> findAll();
 
-    void add(Facility facility);
+    void add(T t);
+
+    void edit(T t, int usage);
+
 }

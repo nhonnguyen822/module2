@@ -4,7 +4,7 @@ import study.common.RentalType;
 
 import java.util.Objects;
 
-public class Facility {
+public abstract class Facility {
     private String facilityCode;
     private String facilityName;
     private double usableArea;

@@ -5,10 +5,11 @@ import study.enity.Customer;
 import study.enity.Facility;
 import study.service.CustomerService;
 import study.service.ICustomerService;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BookingView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -47,8 +48,19 @@ public class BookingView {
     }
 
     public static Booking inputDataBooking(Customer customer, Facility facility) {
-        System.out.println("enter booking code");
+        System.out.println("enter booking code format BK-XXXX");
         String bookingCode = scanner.nextLine();
+        while (true) {
+            String regex = "^BK-\\d{4}$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(bookingCode);
+            if (matcher.matches()) {
+                System.out.println("mã hợp lệ");
+                break;
+            } else {
+                System.out.println("mã không hợp lệ");
+            }
+        }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate bookingDate = null;
         while (true) {
@@ -63,7 +75,7 @@ public class BookingView {
         }
         LocalDate rentalStartDay = null;
         while (true) {
-            System.out.println("nhập ngày bắt đầu booking");
+            System.out.println("nhập ngày bắt đầu thuê");
             String input = scanner.nextLine();
             try {
                 rentalStartDay = LocalDate.parse(input, dateTimeFormatter);
@@ -74,7 +86,7 @@ public class BookingView {
         }
         LocalDate rentalEndDay = null;
         while (true) {
-            System.out.println("nhập ngày bắt đầu booking");
+            System.out.println("nhập ngày kết thúc thuê");
             String input = scanner.nextLine();
             try {
                 rentalEndDay = LocalDate.parse(input, dateTimeFormatter);
@@ -86,6 +98,7 @@ public class BookingView {
         String customerCode = customer.getId();
         String customerName = customer.getName();
         String facilityCode = facility.getFacilityCode();
-        return new Booking(bookingCode, bookingDate, rentalStartDay, rentalEndDay, customerCode, customerName, facilityCode);
+        boolean status = false;
+        return new Booking(bookingCode, bookingDate, rentalStartDay, rentalEndDay, customerCode, customerName, facilityCode, status);
     }
 }

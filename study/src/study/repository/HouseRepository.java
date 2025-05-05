@@ -3,6 +3,7 @@ package study.repository;
 import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
 import study.enity.House;
+
 import java.util.*;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class HouseRepository implements IHouseRepository {
     private static final String HOUSE_FILE = "src/study/data/house.csv";
     private static final boolean NOT_APPEND = false;
 
-    private static List<String> convertToListString(Map<House, Integer> houseIntegerMap) {
+    public List<String> convertToListString(Map<House, Integer> houseIntegerMap) {
         List<String> stringList = new ArrayList<>();
         for (Map.Entry<House, Integer> houseIntegerEntry : houseIntegerMap.entrySet()) {
             House house = houseIntegerEntry.getKey();
@@ -21,7 +22,7 @@ public class HouseRepository implements IHouseRepository {
         return stringList;
     }
 
-    private static Map<House, Integer> convertToMapList() {
+    public Map<House, Integer> convertToMapList() {
         Map<House, Integer> houseIntegerMap = new LinkedHashMap<>();
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(HOUSE_FILE);
         for (String string : stringList) {
@@ -60,4 +61,19 @@ public class HouseRepository implements IHouseRepository {
         List<String> stringList = convertToListString(houseIntegerMap);
         ReadAndWriteDaTa.writeFileCSV(HOUSE_FILE, stringList, NOT_APPEND);
     }
+
+    @Override
+    public void edit(House house, int usage) {
+        if (!house.isStatus()) {
+            Map<House, Integer> houseIntegerMap = convertToMapList();
+            if (houseIntegerMap.containsKey(house)) {
+                houseIntegerMap.put(house, usage);
+            }
+            List<String> stringList = convertToListString(houseIntegerMap);
+            ReadAndWriteDaTa.writeFileCSV(HOUSE_FILE, stringList, NOT_APPEND);
+            System.out.println();
+        }
+
+    }
+
 }

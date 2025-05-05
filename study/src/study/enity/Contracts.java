@@ -1,23 +1,23 @@
 package study.enity;
 
 public class Contracts {
-    private  int contractId;
-    private  String bookingCode;
+    private String contractId;
+    private String bookingCode;
     private int deposit;
     private int totalPayment;
 
-    public Contracts(int contractId, String bookingCode, int deposit, int totalPayment) {
+    public Contracts(String contractId, String bookingCode, int deposit, int totalPayment) {
         this.contractId = contractId;
         this.bookingCode = bookingCode;
         this.deposit = deposit;
         this.totalPayment = totalPayment;
     }
 
-    public int getContractId() {
+    public String getContractId() {
         return contractId;
     }
 
-    public void setContractId(int contractId) {
+    public void setContractId(String contractId) {
         this.contractId = contractId;
     }
 
@@ -54,4 +54,10 @@ public class Contracts {
                 ", totalPayment=" + totalPayment +
                 '}';
     }
+
+    public  String convertToString() {
+        return this.contractId + "," + this.bookingCode + "," +this.deposit + "," +this.totalPayment;
+    }
+
+
 }

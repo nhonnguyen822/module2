@@ -3,14 +3,21 @@ package study.enity;
 import study.common.RentalType;
 
 import java.util.Objects;
-
 public class House extends Facility {
     private String roomStandard;
     private int numberOfFloors;
+    private boolean status = false;
 
     public House() {
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public House(String facilityCode, String facilityName, double usableArea, int rentalCost,
                  int maxOfPeople, RentalType rentalType, String roomStandard, int numberOfFloors) {

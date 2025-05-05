@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmployeeView {
+public class    EmployeeView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String nhapMaNV() {
@@ -28,7 +28,7 @@ public class EmployeeView {
 
     //nhập thông tin nhân viên
 
-    public static Employee inputDataKH() {
+    public static Employee inputDataNV() {
         System.out.println("nhập mã nhân viên");
         String id = scanner.nextLine();
         while (true) {

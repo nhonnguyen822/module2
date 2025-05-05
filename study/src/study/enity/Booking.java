@@ -11,9 +11,18 @@ public class Booking implements Comparable<Booking> {
     private String customerCode;
     private String customerName;
     private String facilityCode;
+    private boolean status = false;
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public Booking(String bookingCode, LocalDate bookingDate, LocalDate rentalStarBooking,
-                   LocalDate rentalEndBooking, String customerCode, String customerName, String facilityCode) {
+                   LocalDate rentalEndBooking, String customerCode, String customerName, String facilityCode, boolean status) {
         this.bookingCode = bookingCode;
         this.bookingDate = bookingDate;
         this.rentalStarDay = rentalStarBooking;
@@ -21,6 +30,7 @@ public class Booking implements Comparable<Booking> {
         this.customerCode = customerCode;
         this.customerName = customerName;
         this.facilityCode = facilityCode;
+        this.status = status;
     }
 
     public String getBookingCode() {
@@ -96,21 +106,24 @@ public class Booking implements Comparable<Booking> {
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
         Booking booking = (Booking) object;
-        return Objects.equals(bookingCode, booking.bookingCode) && Objects.equals(customerName, booking.customerName);
+        return Objects.equals(bookingCode, booking.bookingCode) && Objects.equals(rentalEndDay, booking.rentalEndDay);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookingCode, customerName);
+        return Objects.hash(bookingCode, rentalEndDay);
     }
 
     @Override
     public int compareTo(Booking o) {
+        if (this.getBookingDate().equals(o.bookingDate)) {
+            return this.getRentalEndDay().compareTo(o.getRentalEndDay());
+        }
         return this.getBookingDate().compareTo(o.getBookingDate());
     }
 
     public String convertToString() {
         return this.bookingCode + "," + this.bookingDate + "," + this.rentalStarDay + "," + this.rentalEndDay
-                + "," + this.customerCode + "," + this.customerName + "," + this.facilityCode;
+                + "," + this.customerCode + "," + this.customerName + "," + this.facilityCode + "," + this.status;
     }
 }
