@@ -24,19 +24,19 @@ public class FuramaController {
                 int chose = Integer.parseInt(scanner.nextLine());
                 switch (chose) {
                     case 1:
-                        FuramaControllerSubMenu.employeeManagement();
+                        FuramaEmployyeController.employeeManagement();
                         break;
                     case 2:
-                        FuramaControllerSubMenu.customerManagement();
+                        FuramaCustomerController.customerManagement();
                         break;
                     case 3:
-                        FuramaControllerSubMenu.facilityManagement();
+                        FuramaFacilityController.facilityManagement();
                         break;
                     case 4:
-                        FuramaControllerSubMenu.bookingManagement();
+                        FuramaBookingController.bookingManagement();
                         break;
                     case 5:
-                        FuramaControllerSubMenu.promotionManagement();
+                        FuramaPromotionController.promotionManagement();
                         break;
                     case 6:
                         System.out.println("bạn chọn quay trở lại ,yes or no");
