@@ -11,11 +11,14 @@ public abstract class Facility {
     private int rentalCost;
     private int maxOfPeople;
     private RentalType rentalType;
+    private boolean status = false;
 
     public Facility() {
     }
 
-    public Facility(String facilityCode, String facilityName, double usableArea, int rentalCost, int maxOfPeople, RentalType rentalType) {
+    public Facility(boolean status, String facilityCode, String facilityName, double usableArea,
+                    int rentalCost, int maxOfPeople, RentalType rentalType) {
+        this.status = status;
         this.facilityCode = facilityCode;
         this.facilityName = facilityName;
         this.usableArea = usableArea;
@@ -24,6 +27,13 @@ public abstract class Facility {
         this.rentalType = rentalType;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public String getFacilityCode() {
         return facilityCode;
@@ -89,21 +99,20 @@ public abstract class Facility {
         this.usableArea = usableArea;
     }
 
+    public String convertToString() {
+        return this.status + "," + this.facilityCode + "," + this.facilityName + "," + this.usableArea + ","
+                + this.rentalCost + "," + this.maxOfPeople + "," + this.rentalType;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
         Facility facility = (Facility) object;
-        return Double.compare(usableArea, facility.usableArea) == 0 && rentalCost == facility.rentalCost
-                && maxOfPeople == facility.maxOfPeople && Objects.equals(facilityCode, facility.facilityCode)
-                && Objects.equals(facilityName, facility.facilityName) && rentalType == facility.rentalType;
+        return Objects.equals(facilityCode, facility.facilityCode) && Objects.equals(facilityName, facility.facilityName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType);
-    }
-
-    public String convertToString() {
-        return this.facilityCode +","+ this.facilityName +","+this.usableArea +","+ this.rentalCost +","+ this.maxOfPeople +","+ this.rentalType;
+        return Objects.hash(facilityCode, facilityName);
     }
 }

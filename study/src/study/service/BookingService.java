@@ -29,6 +29,7 @@ public class BookingService implements IBookingServie {
         for (Map.Entry<Facility, Integer> facilityIntegerEntry : facilityService.findAll().entrySet()) {
             if (facilityIntegerEntry.getKey().getFacilityCode().equals(booking.getFacilityCode())) {
                 Facility facility = facilityIntegerEntry.getKey();
+                facility.setStatus(true);
                 if (facility instanceof Villa) {
                     int newUsage = facilityIntegerEntry.getValue() + 1;
                     villaService.edit((Villa) facility, newUsage);

@@ -5,6 +5,7 @@ import study.enity.Customer;
 import study.enity.Facility;
 import study.service.CustomerService;
 import study.service.ICustomerService;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -28,10 +29,9 @@ public class BookingView {
             for (int i = 0; i < customerList.size(); i++) {
                 if (customerId.equals(customerList.get(i).getId())) {
                     return customerList.get(i);
-                } else {
-                    System.out.println("nhập id khách hàng chưa đúng");
                 }
             }
+            System.out.println("nhập lại mã khách hàng");
         }
     }
 
@@ -44,6 +44,7 @@ public class BookingView {
                     return facilityIntegerEntry.getKey();
                 }
             }
+            System.out.println("nhập lại mã khách hàng");
         }
     }
 

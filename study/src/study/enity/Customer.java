@@ -56,16 +56,4 @@ public class Customer extends Person {
                 super.getNumberCMND() + "," + super.getNumberPhone() + "," + super.getEmail() + ","
                 + this.getCustomerType() + "," + this.getAddress();
     }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object == null || getClass() != object.getClass()) return false;
-        Customer customer = (Customer) object;
-        return customerType == customer.customerType && Objects.equals(address, customer.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(customerType, address);
-    }
 }

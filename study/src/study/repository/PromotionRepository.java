@@ -1,9 +1,12 @@
 package study.repository;
 
+import study.common.CustomerType;
+import study.common.Gender;
 import study.common.ReadAndWriteDaTa;
 import study.enity.Booking;
 import study.enity.Customer;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class PromotionRepository implements IPromotionRepository {
@@ -13,7 +16,7 @@ public class PromotionRepository implements IPromotionRepository {
     private static final CustomerRepository customerRepository = new CustomerRepository();
 
     @Override
-    public List<Customer> findAll(int year) {
+    public Set<Customer> findAll(int year) {
         List<Customer> customerList = customerRepository.findAll();
         Set<Customer> customers = new LinkedHashSet<>();
         Set<Booking> bookingSet = bookingRepository.findAll();
@@ -26,16 +29,20 @@ public class PromotionRepository implements IPromotionRepository {
                 }
             }
         }
-        List<Customer> customerStack = new Stack<>();
-        customerStack.addAll(customers);
-        List<String> stringList = customerRepository.convertToStringList(customerStack);
+        List<Customer> customerList1 = new ArrayList<>(customers);
+        List<String> stringList = customerRepository.convertToStringList(customerList1);
         ReadAndWriteDaTa.writeFileCSV(PROMOTION_FILE, stringList, NOT_APPEND);
-        return customerStack;
+        return customers;
     }
 
     @Override
-    public List<Customer> findCustomerVoucher() {
+    public Stack<Customer> findCustomerVoucher() {
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(PROMOTION_FILE);
-        return customerRepository.convertToCustomerList(stringList);
+        List<Customer> customerList = customerRepository.convertToCustomerList(stringList);
+        Stack<Customer> customers = new Stack<>();
+        for (Customer customer : customerList) {
+            customers.push(customer);
+        }
+        return customers;
     }
 }

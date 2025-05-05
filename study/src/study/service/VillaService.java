@@ -22,7 +22,13 @@ public class VillaService implements IVillaService {
 
     @Override
     public void edit(Villa villa, int usage) {
-        villaRepository.edit(villa,usage);
+        villaRepository.edit(villa, usage);
+    }
+
+    @Override
+    public Map<Villa, Integer> listFacilityNotUsed() {
+
+        return villaRepository.listFacilityNotUsed();
     }
 
 }

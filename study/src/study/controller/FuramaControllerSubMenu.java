@@ -202,7 +202,7 @@ public class FuramaControllerSubMenu {
                 case 1:
                     List<Customer> customerList = customerService.findAll();
                     Customer customer = BookingView.selectCustomerBooking(customerList);
-                    Map<Facility, Integer> facilityIntegerMap = facilityService.findAll();
+                    Map<Facility, Integer> facilityIntegerMap = facilityService.listFacilityNotUsed();
                     Facility facility = BookingView.selectFacilityBooking(facilityIntegerMap);
                     Booking booking = BookingView.inputDataBooking(customer, facility);
                     bookingService.add(booking);
@@ -269,14 +269,14 @@ public class FuramaControllerSubMenu {
             switch (chose) {
                 case 1:
                     int yearBookingFacility = PromotionView.inputYear();
-                    List<Customer> customerListBookingFacility = promotionService.findAll(yearBookingFacility);
+                    Set<Customer> customerListBookingFacility = promotionService.findAll(yearBookingFacility);
                     PromotionView.display(customerListBookingFacility);
                     break;
                 case 2:
                     int quantity10 = PromotionView.quantityVoucher10();
                     int quantity20 = PromotionView.quantityVoucher20();
                     int quantity50 = PromotionView.quantityVoucher50();
-                    List<Customer> customerList = promotionService.findCustomerVoucher();
+                    Stack<Customer> customerList = promotionService.findCustomerVoucher();
                     PromotionView.displayListCustomerVoucher(customerList, quantity10, quantity20, quantity50);
                     break;
                 case 3:

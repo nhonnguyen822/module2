@@ -15,12 +15,13 @@ public class Car implements Runnable {
      * @see Thread#run()
      */
     private String name;
-    private final int DISTANCE;
+    private final int DISTANCE = 100;
+    private final int STEP = 5;
 
 
-    public Car(String name, int DISTANCE) {
+    public Car(String name) {
         this.name = name;
-        this.DISTANCE = DISTANCE;
+
     }
 
     @Override
@@ -32,7 +33,25 @@ public class Car implements Runnable {
             runDistance += speed;
             String log = "|";
             int percentTravel = (runDistance * 100) / DISTANCE;
-            
+            for (int i = 0; i < DISTANCE; i += STEP) {
+                if (percentTravel >= i + STEP) {
+                    log += "=";
+                } else if (percentTravel >= i && percentTravel < i + STEP) {
+                    log += "o";
+                } else {
+                    log += "-";
+                }
+            }
+            log += "|";
+            System.out.println("Car" + this.name + ": " + log + " " + Math.min(DISTANCE, runDistance) + "KM");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Car" + this.name + " broken...");
+                break;
+            }
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Car" + this.name + " Finish in " + (endTime - startTime) / 1000 + "s");
     }
 }

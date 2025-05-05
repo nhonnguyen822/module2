@@ -12,6 +12,7 @@ public class RoomView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static Room add() {
+        boolean status = false;
         System.out.println("nhập mã dich vu");
         String facilityCode = scanner.nextLine();
         while (true) {
@@ -91,7 +92,7 @@ public class RoomView {
         }
 
 
-        return new Room(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, freeService);
+        return new Room(status,facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, freeService);
 //        return new House(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, roomStandard, numberOfFloors);
     }
 }

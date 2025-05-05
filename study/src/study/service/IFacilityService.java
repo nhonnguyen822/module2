@@ -10,5 +10,6 @@ public interface IFacilityService<T> {
     void add(T t);
 
     void edit(T t, int usage);
+    Map<T, Integer> listFacilityNotUsed();
 
 }

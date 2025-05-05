@@ -29,18 +29,19 @@ public class VillaRepository implements IVillaRepository {
         if (!stringList.isEmpty()) {
             for (String string : stringList) {
                 String[] line = string.split(",");
-                if (line.length == 9) {
+                if (line.length == 10) {
                     try {
-                        String facilityCode = line[0];
-                        String facilityName = line[1];
-                        double usableArea = Double.parseDouble(line[2]);
-                        int rentalCost = Integer.parseInt(line[3]);
-                        int maxOfPeople = Integer.parseInt(line[4]);
-                        RentalType rentalType = RentalType.valueOf(line[5]);
-                        String roomStandard = line[6];
-                        double poolArea = Double.parseDouble(line[7]);
-                        int numberOfUses = Integer.parseInt(line[8]);
-                        Villa villa = new Villa(facilityCode, facilityName, usableArea,
+                        boolean status = Boolean.parseBoolean(line[0]);
+                        String facilityCode = line[1];
+                        String facilityName = line[2];
+                        double usableArea = Double.parseDouble(line[3]);
+                        int rentalCost = Integer.parseInt(line[4]);
+                        int maxOfPeople = Integer.parseInt(line[5]);
+                        RentalType rentalType = RentalType.valueOf(line[6]);
+                        String roomStandard = line[7];
+                        double poolArea = Double.parseDouble(line[8]);
+                        int numberOfUses = Integer.parseInt(line[9]);
+                        Villa villa = new Villa(status, facilityCode, facilityName, usableArea,
                                 rentalCost, maxOfPeople, rentalType, roomStandard, poolArea);
                         villaIntegerMap.put(villa, numberOfUses);
                     } catch (Exception e) {
@@ -69,12 +70,25 @@ public class VillaRepository implements IVillaRepository {
     @Override
     public void edit(Villa villa, int usage) {
         Map<Villa, Integer> villaIntegerMap = convertToMapList();
-        if(villaIntegerMap.containsKey(villa)){
-            villaIntegerMap.put(villa,usage);
+        for (Map.Entry<Villa, Integer> houseIntegerEntry : villaIntegerMap.entrySet()) {
+            if (houseIntegerEntry.getKey().equals(villa)) {
+                houseIntegerEntry.getKey().setStatus(true);
+                villaIntegerMap.put(villa, usage);
+            }
         }
         List<String> stringList = convertToListString(villaIntegerMap);
         ReadAndWriteDaTa.writeFileCSV(VILLA_FILE, stringList, NOT_APPEND);
     }
 
-
+    @Override
+    public Map<Villa, Integer> listFacilityNotUsed() {
+        Map<Villa, Integer> villaIntegerMap = findAll();
+        Map<Villa, Integer> newVillaIntegerMap = new LinkedHashMap<>();
+        for (Map.Entry<Villa, Integer> villaIntegerEntry : villaIntegerMap.entrySet()) {
+            if (!villaIntegerEntry.getKey().isStatus()) {
+                newVillaIntegerMap.put(villaIntegerEntry.getKey(), villaIntegerEntry.getValue());
+            }
+        }
+        return newVillaIntegerMap;
+    }
 }

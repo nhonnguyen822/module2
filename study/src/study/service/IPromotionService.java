@@ -3,9 +3,11 @@ package study.service;
 import study.enity.Customer;
 
 import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public interface IPromotionService {
-    List<Customer> findAll(int year);
+    Set<Customer> findAll(int year);
 
-    List<Customer> findCustomerVoucher();
+    Stack<Customer> findCustomerVoucher();
 }

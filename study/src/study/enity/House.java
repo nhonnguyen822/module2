@@ -6,22 +6,13 @@ import java.util.Objects;
 public class House extends Facility {
     private String roomStandard;
     private int numberOfFloors;
-    private boolean status = false;
 
     public House() {
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public House(String facilityCode, String facilityName, double usableArea, int rentalCost,
+    public House(boolean status,String facilityCode, String facilityName, double usableArea, int rentalCost,
                  int maxOfPeople, RentalType rentalType, String roomStandard, int numberOfFloors) {
-        super(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType);
+        super(status,facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType);
         this.roomStandard = roomStandard;
         this.numberOfFloors = numberOfFloors;
     }

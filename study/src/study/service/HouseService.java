@@ -23,4 +23,9 @@ public class HouseService implements IHouseService {
     public void edit(House house, int usage) {
         houseRepository.edit(house, usage);
     }
+
+    @Override
+    public Map<House, Integer> listFacilityNotUsed() {
+        return houseRepository.listFacilityNotUsed();
+    }
 }

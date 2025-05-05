@@ -27,18 +27,19 @@ public class HouseRepository implements IHouseRepository {
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(HOUSE_FILE);
         for (String string : stringList) {
             String[] line = string.split(",");
-            if (line.length == 9) {
+            if (line.length == 10) {
                 try {
-                    String facilityCode = line[0];
-                    String facilityName = line[1];
-                    double usableArea = Double.parseDouble(line[2]);
-                    int rentalCost = Integer.parseInt(line[3]);
-                    int maxOfPeople = Integer.parseInt(line[4]);
-                    RentalType rentalType = RentalType.valueOf(line[5]);
-                    String roomStandard = line[6];
-                    int numberOfFloors = Integer.parseInt(line[7]);
-                    int numberOfUses = Integer.parseInt(line[8]);
-                    House house = new House(facilityCode, facilityName, usableArea,
+                    boolean status = Boolean.parseBoolean(line[0]);
+                    String facilityCode = line[1];
+                    String facilityName = line[2];
+                    double usableArea = Double.parseDouble(line[3]);
+                    int rentalCost = Integer.parseInt(line[4]);
+                    int maxOfPeople = Integer.parseInt(line[5]);
+                    RentalType rentalType = RentalType.valueOf(line[6]);
+                    String roomStandard = line[7];
+                    int numberOfFloors = Integer.parseInt(line[8]);
+                    int numberOfUses = Integer.parseInt(line[9]);
+                    House house = new House(status, facilityCode, facilityName, usableArea,
                             rentalCost, maxOfPeople, rentalType, roomStandard, numberOfFloors);
                     houseIntegerMap.put(house, numberOfUses);
                 } catch (Exception e) {
@@ -64,16 +65,27 @@ public class HouseRepository implements IHouseRepository {
 
     @Override
     public void edit(House house, int usage) {
-        if (!house.isStatus()) {
-            Map<House, Integer> houseIntegerMap = convertToMapList();
-            if (houseIntegerMap.containsKey(house)) {
+        Map<House, Integer> houseIntegerMap = convertToMapList();
+        for (Map.Entry<House, Integer> houseIntegerEntry : houseIntegerMap.entrySet()) {
+            if (houseIntegerEntry.getKey().equals(house)) {
+                houseIntegerEntry.getKey().setStatus(true);
                 houseIntegerMap.put(house, usage);
             }
-            List<String> stringList = convertToListString(houseIntegerMap);
-            ReadAndWriteDaTa.writeFileCSV(HOUSE_FILE, stringList, NOT_APPEND);
-            System.out.println();
         }
-
+        List<String> stringList = convertToListString(houseIntegerMap);
+        ReadAndWriteDaTa.writeFileCSV(HOUSE_FILE, stringList, NOT_APPEND);
+        System.out.println();
     }
 
+    @Override
+    public Map<House, Integer> listFacilityNotUsed() {
+        Map<House, Integer> houseIntegerMap = findAll();
+        Map<House, Integer> newHouseIntegerMap = new LinkedHashMap<>();
+        for (Map.Entry<House, Integer> houseIntegerEntry : houseIntegerMap.entrySet()) {
+            if (!houseIntegerEntry.getKey().isStatus()) {
+                newHouseIntegerMap.put(houseIntegerEntry.getKey(), houseIntegerEntry.getValue());
+            }
+        }
+        return newHouseIntegerMap;
+    }
 }

@@ -26,4 +26,8 @@ public class RoomService implements IRoomService {
         roomRepository.edit(room, usage);
     }
 
+    @Override
+    public Map<Room, Integer> listFacilityNotUsed() {
+        return roomRepository.listFacilityNotUsed();
+    }
 }

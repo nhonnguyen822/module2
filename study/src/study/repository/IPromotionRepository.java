@@ -4,9 +4,11 @@ import study.enity.Booking;
 import study.enity.Customer;
 
 import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public interface IPromotionRepository {
-    List<Customer> findAll(int year);
+    Set<Customer> findAll(int year);
 
-    List<Customer> findCustomerVoucher();
+    Stack<Customer> findCustomerVoucher();
 }

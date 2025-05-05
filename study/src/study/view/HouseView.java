@@ -2,6 +2,7 @@ package study.view;
 
 import study.common.RentalType;
 import study.enity.House;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,6 +11,7 @@ public class HouseView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static House add() {
+        boolean status = false;
         System.out.println("nhập mã dich vu");
         String facilityCode = scanner.nextLine();
         while (true) {
@@ -94,7 +96,7 @@ public class HouseView {
             System.out.println("nhập số tầng ");
             numberOfFloors = Integer.parseInt(scanner.nextLine());
         }
-        return new House(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, roomStandard, numberOfFloors);
+        return new House(status,facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, roomStandard, numberOfFloors);
     }
 
 }

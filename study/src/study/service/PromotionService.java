@@ -6,17 +6,19 @@ import study.repository.IPromotionRepository;
 import study.repository.PromotionRepository;
 
 import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public class PromotionService implements IPromotionService {
     private static final IPromotionRepository promotionRepository = new PromotionRepository();
 
     @Override
-    public List<Customer> findAll(int year) {
+    public Set<Customer> findAll(int year) {
         return promotionRepository.findAll(year);
     }
 
     @Override
-    public List<Customer> findCustomerVoucher() {
+    public Stack<Customer> findCustomerVoucher() {
         return promotionRepository.findCustomerVoucher();
     }
 }

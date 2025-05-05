@@ -11,6 +11,7 @@ public class VillaView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static Villa add() {
+        boolean status = false;
         System.out.println("nhập mã dich vu");
         String facilityCode = scanner.nextLine();
         while (true) {
@@ -95,6 +96,6 @@ public class VillaView {
             System.out.println("nhập số tầng ");
             poolArea = Integer.parseInt(scanner.nextLine());
         }
-        return new Villa(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, roomStandard, poolArea);
+        return new Villa(status, facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, roomStandard, poolArea);
     }
 }

@@ -30,17 +30,18 @@ public class RoomRepository implements IRoomRepository {
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(ROOM_FILE);
         for (String string : stringList) {
             String[] line = string.split(",");
-            if (line.length == 8) {
+            if (line.length == 9) {
                 try {
-                    String facilityCode = line[0];
-                    String facilityName = line[1];
-                    double usableArea = Double.parseDouble(line[2]);
-                    int rentalCost = Integer.parseInt(line[3]);
-                    int maxOfPeople = Integer.parseInt(line[4]);
-                    RentalType rentalType = RentalType.valueOf(line[5]);
-                    String freeService = line[6];
-                    int numberOfUses = Integer.parseInt(line[7]);
-                    Room room = new Room(facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, freeService);
+                    boolean status= Boolean.parseBoolean(line[0]);
+                    String facilityCode = line[1];
+                    String facilityName = line[2];
+                    double usableArea = Double.parseDouble(line[3]);
+                    int rentalCost = Integer.parseInt(line[4]);
+                    int maxOfPeople = Integer.parseInt(line[5]);
+                    RentalType rentalType = RentalType.valueOf(line[6]);
+                    String freeService = line[7];
+                    int numberOfUses = Integer.parseInt(line[8]);
+                    Room room = new Room(status,facilityCode, facilityName, usableArea, rentalCost, maxOfPeople, rentalType, freeService);
                     houseIntegerMap.put(room, numberOfUses);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -67,10 +68,25 @@ public class RoomRepository implements IRoomRepository {
     @Override
     public void edit(Room room, int usage) {
         Map<Room, Integer> roomIntegerMap = convertToMapList();
-        if (roomIntegerMap.containsKey(room)) {
-            roomIntegerMap.put(room, usage);
+        for (Map.Entry<Room, Integer> houseIntegerEntry :roomIntegerMap.entrySet()) {
+            if (houseIntegerEntry.getKey().equals(room)) {
+                houseIntegerEntry.getKey().setStatus(true);
+                roomIntegerMap.put(room, usage);
+            }
         }
         List<String> stringList = convertToListString(roomIntegerMap);
         ReadAndWriteDaTa.writeFileCSV(ROOM_FILE, stringList, NOT_APPEND);
+    }
+
+    @Override
+    public Map<Room, Integer> listFacilityNotUsed() {
+        Map<Room, Integer> roomIntegerMap = findAll();
+        Map<Room, Integer> newRoomIntegerMap = new LinkedHashMap<>();
+        for (Map.Entry<Room, Integer> roomIntegerEntry : roomIntegerMap.entrySet()) {
+            if (!roomIntegerEntry.getKey().isStatus()) {
+                newRoomIntegerMap.put(roomIntegerEntry.getKey(), roomIntegerEntry.getValue());
+            }
+        }
+        return newRoomIntegerMap;
     }
 }
