@@ -5,6 +5,7 @@ import study.common.CustomerType;
 import study.enity.Customer;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
@@ -64,7 +65,13 @@ public class CustomerView {
             String input = scanner.nextLine();
             try {
                 birthDay = LocalDate.parse(input, dateTimeFormatter);
-                break;
+                LocalDate toDay = LocalDate.now();
+                Period age = Period.between(birthDay, toDay);
+                if(age.getYears()>18){
+                    break;
+                }else {
+                    System.out.println("tuổi khách hàng không được nhỏ hơn 18");
+                }
             } catch (Exception e) {
                 System.out.println("ngày sinh không hợp lệ");
             }

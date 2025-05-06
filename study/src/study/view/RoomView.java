@@ -1,7 +1,7 @@
 package study.view;
 
 import study.common.RentalType;
-import study.enity.House;
+
 import study.enity.Room;
 
 import java.util.Scanner;

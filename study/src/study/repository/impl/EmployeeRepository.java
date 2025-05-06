@@ -1,10 +1,11 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.Gender;
 import study.common.ReadAndWriteDaTa;
 import study.common.TrinhDo;
 import study.common.ViTri;
 import study.enity.Employee;
+import study.repository.IEmployeeRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

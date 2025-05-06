@@ -61,20 +61,7 @@ public class ContractView {
     }
 
     public static Contracts edit(Contracts contracts) {
-        String contractId = scanner.nextLine();
-        System.out.println("mã hợp đồng hiện tại " + contracts.getContractId());
-        System.out.println("nhập mã thay đổi ");
-        while (true) {
-            String regex = "^HD-\\d{4}$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(contractId);
-            if (matcher.matches()) {
-                System.out.println("mã hợp lệ");
-                break;
-            } else {
-                System.out.println("mã không hợp lệ");
-            }
-        }
+        String contractId = contracts.getContractId();
         String bookingCode = contracts.getBookingCode();
         System.out.println("số tiền cọc hiện tại " + contracts.getDeposit());
         System.out.println("nhập thay đổi");
@@ -83,11 +70,11 @@ public class ContractView {
             System.out.println("nhập lại tiền cọc");
             deposit = Integer.parseInt(scanner.nextLine());
         }
-        System.out.println("số tiền cọc hiện tại " + contracts.getTotalPayment());
+        System.out.println("tổng số tiền  hiện tại " + contracts.getTotalPayment());
         System.out.println("nhập thay đổi");
         int totalPayment = Integer.parseInt(scanner.nextLine());
         while (totalPayment <= 0) {
-            System.out.println("nhập lại tiền cọc");
+            System.out.println("nhập lại tổng số  tiền ");
             totalPayment = Integer.parseInt(scanner.nextLine());
         }
         return new Contracts(contractId, bookingCode, deposit, totalPayment);

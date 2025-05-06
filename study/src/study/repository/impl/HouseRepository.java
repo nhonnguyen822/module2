@@ -1,8 +1,9 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
 import study.enity.House;
+import study.repository.IHouseRepository;
 
 import java.util.*;
 import java.util.List;
@@ -64,7 +65,7 @@ public class HouseRepository implements IHouseRepository {
     }
 
     @Override
-    public void edit(House house, int usage) {
+    public void updateUsage(House house, int usage) {
         Map<House, Integer> houseIntegerMap = convertToMapList();
         for (Map.Entry<House, Integer> houseIntegerEntry : houseIntegerMap.entrySet()) {
             if (houseIntegerEntry.getKey().equals(house)) {
@@ -78,7 +79,7 @@ public class HouseRepository implements IHouseRepository {
     }
 
     @Override
-    public Map<House, Integer> listFacilityNotUsed() {
+    public Map<House, Integer> getFacilityNotUsed() {
         Map<House, Integer> houseIntegerMap = findAll();
         Map<House, Integer> newHouseIntegerMap = new LinkedHashMap<>();
         for (Map.Entry<House, Integer> houseIntegerEntry : houseIntegerMap.entrySet()) {

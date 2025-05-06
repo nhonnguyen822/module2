@@ -4,7 +4,7 @@ import study.enity.Facility;
 import study.enity.House;
 import study.enity.Room;
 import study.enity.Villa;
-import study.service.FacilityService;
+import study.service.impl.FacilityService;
 import study.service.IFacilityService;
 import study.view.FacilityView;
 import study.view.HouseView;

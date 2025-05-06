@@ -8,8 +8,8 @@ public interface IFacilityRepository<T> {
 
     void add(T t);
 
-    void edit(T t, int usage);
-    Map<T, Integer> listFacilityNotUsed();
+    void updateUsage(T t, int usage);
+    Map<T, Integer> getFacilityNotUsed();
 
 
 }

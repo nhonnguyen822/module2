@@ -6,6 +6,6 @@ import java.util.Set;
 
 public interface IBookingServie {
     Set<Booking> findAll();
-    void edit(Booking booking);
+    void updateStatus(Booking booking);
     void add(Booking booking);
 }

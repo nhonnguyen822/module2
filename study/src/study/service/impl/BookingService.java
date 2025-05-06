@@ -1,7 +1,9 @@
-package study.service;
+package study.service.impl;
 
 import study.enity.*;
 import study.repository.*;
+import study.repository.impl.BookingRepository;
+import study.service.*;
 
 
 import java.util.Map;
@@ -20,8 +22,8 @@ public class BookingService implements IBookingServie {
     }
 
     @Override
-    public void edit(Booking booking) {
-        bookingRepository.edit(booking);
+    public void updateStatus(Booking booking) {
+        bookingRepository.updateStatus(booking);
     }
 
     @Override
@@ -32,13 +34,13 @@ public class BookingService implements IBookingServie {
                 facility.setStatus(true);
                 if (facility instanceof Villa) {
                     int newUsage = facilityIntegerEntry.getValue() + 1;
-                    villaService.edit((Villa) facility, newUsage);
+                    villaService.updateUsage((Villa) facility, newUsage);
                 } else if (facility instanceof House) {
                     int newUsage = facilityIntegerEntry.getValue() + 1;
-                    houseService.edit((House) facility, newUsage);
+                    houseService.updateUsage((House) facility, newUsage);
                 } else {
                     int newUsage = facilityIntegerEntry.getValue() + 1;
-                    roomService.edit((Room) facility, newUsage);
+                    roomService.updateUsage((Room) facility, newUsage);
                 }
             }
         }

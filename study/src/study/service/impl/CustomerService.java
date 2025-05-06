@@ -1,8 +1,9 @@
-package study.service;
+package study.service.impl;
 
 import study.enity.Customer;
 import study.repository.ICustomerRepository;
-import study.repository.CustomerRepository;
+import study.repository.impl.CustomerRepository;
+import study.service.ICustomerService;
 
 import java.util.List;
 

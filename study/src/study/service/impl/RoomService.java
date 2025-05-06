@@ -1,11 +1,10 @@
-package study.service;
+package study.service.impl;
 
 import study.enity.Room;
 import study.repository.IRoomRepository;
-import study.repository.RoomRepository;
+import study.repository.impl.RoomRepository;
+import study.service.IRoomService;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RoomService implements IRoomService {
@@ -22,12 +21,12 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public void edit(Room room, int usage) {
-        roomRepository.edit(room, usage);
+    public void updateUsage(Room room, int usage) {
+        roomRepository.updateUsage(room, usage);
     }
 
     @Override
-    public Map<Room, Integer> listFacilityNotUsed() {
-        return roomRepository.listFacilityNotUsed();
+    public Map<Room, Integer> getFacilityNotUsed() {
+        return roomRepository.getFacilityNotUsed();
     }
 }

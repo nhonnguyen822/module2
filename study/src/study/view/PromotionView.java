@@ -1,11 +1,7 @@
 package study.view;
 
 import study.enity.Customer;
-
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 public class PromotionView {
     private static final Scanner scanner = new Scanner(System.in);
@@ -43,20 +39,19 @@ public class PromotionView {
         return quantity10;
     }
 
-    public static void displayListCustomerVoucher(Stack<Customer> customerList, int v10, int v20, int v50) {
-        int length = customerList.size();
+    public static void displayListCustomerVoucher(Queue<Customer> customerList, int v10, int v20, int v50) {
         while (true) {
             if (!customerList.isEmpty()) {
-                Customer customer = customerList.pop();
-                if (v10 > 0) {
-                    System.out.println(customer + "nhận voucher 10%");
-                    v10--;
+                Customer customer = customerList.poll();
+                if (v50 > 0) {
+                    System.out.println(customer + "nhận voucher 50%");
+                    v50--;
                 } else if (v20 > 0) {
                     System.out.println(customer + "nhận voucher 20%");
                     v20--;
-                } else if (v50 > 0) {
-                    System.out.println(customer + "nhận voucher 50%");
-                    v50--;
+                } else if (v10 > 0) {
+                    System.out.println(customer + "nhận voucher 10%");
+                    v10--;
                 } else {
                     System.out.println("hết voucher");
                 }
@@ -64,8 +59,6 @@ public class PromotionView {
                 break;
             }
         }
-
-
     }
 
     public static int quantityVoucher50() {

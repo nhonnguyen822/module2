@@ -1,9 +1,11 @@
-package study.service;
+package study.service.impl;
 
 
 import study.enity.Employee;
 import study.repository.IEmployeeRepository;
-import study.repository.EmployeeRepository;
+import study.repository.impl.EmployeeRepository;
+import study.service.IEmployeeService;
+
 import java.util.List;
 
 public class EmployeeService implements IEmployeeService {

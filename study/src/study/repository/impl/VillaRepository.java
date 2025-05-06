@@ -1,10 +1,9 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
-import study.enity.House;
 import study.enity.Villa;
-
+import study.repository.IVillaRepository;
 import java.util.*;
 
 public class VillaRepository implements IVillaRepository {
@@ -68,7 +67,7 @@ public class VillaRepository implements IVillaRepository {
     }
 
     @Override
-    public void edit(Villa villa, int usage) {
+    public void updateUsage(Villa villa, int usage) {
         Map<Villa, Integer> villaIntegerMap = convertToMapList();
         for (Map.Entry<Villa, Integer> houseIntegerEntry : villaIntegerMap.entrySet()) {
             if (houseIntegerEntry.getKey().equals(villa)) {
@@ -81,7 +80,7 @@ public class VillaRepository implements IVillaRepository {
     }
 
     @Override
-    public Map<Villa, Integer> listFacilityNotUsed() {
+    public Map<Villa, Integer> getFacilityNotUsed() {
         Map<Villa, Integer> villaIntegerMap = findAll();
         Map<Villa, Integer> newVillaIntegerMap = new LinkedHashMap<>();
         for (Map.Entry<Villa, Integer> villaIntegerEntry : villaIntegerMap.entrySet()) {

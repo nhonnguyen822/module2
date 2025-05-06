@@ -1,12 +1,11 @@
-package study.repository;
+package study.repository.impl;
 
-import study.common.CustomerType;
-import study.common.Gender;
 import study.common.ReadAndWriteDaTa;
 import study.enity.Booking;
 import study.enity.Customer;
+import study.repository.IBookingRepository;
+import study.repository.IPromotionRepository;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class PromotionRepository implements IPromotionRepository {
@@ -36,12 +35,12 @@ public class PromotionRepository implements IPromotionRepository {
     }
 
     @Override
-    public Stack<Customer> findCustomerVoucher() {
+    public Queue<Customer> findCustomerVoucher() {
         List<String> stringList = ReadAndWriteDaTa.readFileCSV(PROMOTION_FILE);
         List<Customer> customerList = customerRepository.convertToCustomerList(stringList);
-        Stack<Customer> customers = new Stack<>();
+        Queue<Customer> customers = new ArrayDeque<>();
         for (Customer customer : customerList) {
-            customers.push(customer);
+            customers.offer(customer);
         }
         return customers;
     }

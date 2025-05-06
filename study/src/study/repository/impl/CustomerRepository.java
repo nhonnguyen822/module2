@@ -1,9 +1,10 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.Gender;
 import study.common.CustomerType;
 import study.common.ReadAndWriteDaTa;
 import study.enity.Customer;
+import study.repository.ICustomerRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

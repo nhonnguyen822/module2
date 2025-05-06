@@ -1,9 +1,9 @@
-package study.service;
+package study.service.impl;
 
-import study.enity.Room;
 import study.enity.Villa;
 import study.repository.IVillaRepository;
-import study.repository.VillaRepository;
+import study.repository.impl.VillaRepository;
+import study.service.IVillaService;
 
 import java.util.Map;
 
@@ -21,14 +21,14 @@ public class VillaService implements IVillaService {
     }
 
     @Override
-    public void edit(Villa villa, int usage) {
-        villaRepository.edit(villa, usage);
+    public void updateUsage(Villa villa, int usage) {
+        villaRepository.updateUsage(villa, usage);
     }
 
     @Override
-    public Map<Villa, Integer> listFacilityNotUsed() {
+    public Map<Villa, Integer> getFacilityNotUsed() {
 
-        return villaRepository.listFacilityNotUsed();
+        return villaRepository.getFacilityNotUsed();
     }
 
 }

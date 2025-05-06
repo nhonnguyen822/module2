@@ -1,8 +1,9 @@
-package study.service;
+package study.service.impl;
 
 import study.enity.House;
-import study.repository.HouseRepository;
+import study.repository.impl.HouseRepository;
 import study.repository.IHouseRepository;
+import study.service.IHouseService;
 
 import java.util.Map;
 
@@ -20,12 +21,12 @@ public class HouseService implements IHouseService {
     }
 
     @Override
-    public void edit(House house, int usage) {
-        houseRepository.edit(house, usage);
+    public void updateUsage(House house, int usage) {
+        houseRepository.updateUsage(house, usage);
     }
 
     @Override
-    public Map<House, Integer> listFacilityNotUsed() {
-        return houseRepository.listFacilityNotUsed();
+    public Map<House, Integer> getFacilityNotUsed() {
+        return houseRepository.getFacilityNotUsed();
     }
 }

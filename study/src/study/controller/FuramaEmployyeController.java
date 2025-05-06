@@ -1,7 +1,7 @@
 package study.controller;
 
 import study.enity.Employee;
-import study.service.EmployeeService;
+import study.service.impl.EmployeeService;
 import study.service.IEmployeeService;
 import study.view.EmployeeView;
 

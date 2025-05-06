@@ -1,8 +1,11 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.ReadAndWriteDaTa;
 import study.enity.Booking;
 import study.enity.Contracts;
+import study.repository.IBookingRepository;
+import study.repository.IContractsRepository;
+
 import java.util.*;
 
 public class ContractsRepository implements IContractsRepository {

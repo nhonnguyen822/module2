@@ -4,14 +4,19 @@ import study.common.Gender;
 import study.common.TrinhDo;
 import study.common.ViTri;
 import study.enity.Employee;
+import study.enity.Person;
+
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.DataFormatException;
 
-public class    EmployeeView {
+public class EmployeeView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String nhapMaNV() {
@@ -66,8 +71,14 @@ public class    EmployeeView {
             String input = scanner.nextLine();
             try {
                 birthDay = LocalDate.parse(input, dateTimeFormatter);
-                break;
-            } catch (Exception e) {
+                LocalDate toDay = LocalDate.now();
+                Period age = Period.between(birthDay, toDay);
+                if(age.getYears()>18){
+                    break;
+                }else {
+                    System.out.println("tuổi của nhân viên không được nhỏ hơn 18");
+                }
+            } catch (DateTimeException e) {
                 System.out.println("ngày sinh không hợp lệ");
             }
         }

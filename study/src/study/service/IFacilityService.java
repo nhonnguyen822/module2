@@ -1,7 +1,5 @@
 package study.service;
 
-import study.enity.Facility;
-
 import java.util.Map;
 
 public interface IFacilityService<T> {
@@ -9,7 +7,7 @@ public interface IFacilityService<T> {
 
     void add(T t);
 
-    void edit(T t, int usage);
-    Map<T, Integer> listFacilityNotUsed();
+    void updateUsage(T t, int usage);
+    Map<T, Integer> getFacilityNotUsed();
 
 }

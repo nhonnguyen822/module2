@@ -1,9 +1,9 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
-import study.enity.House;
 import study.enity.Room;
+import study.repository.IRoomRepository;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -66,7 +66,7 @@ public class RoomRepository implements IRoomRepository {
     }
 
     @Override
-    public void edit(Room room, int usage) {
+    public void updateUsage(Room room, int usage) {
         Map<Room, Integer> roomIntegerMap = convertToMapList();
         for (Map.Entry<Room, Integer> houseIntegerEntry :roomIntegerMap.entrySet()) {
             if (houseIntegerEntry.getKey().equals(room)) {
@@ -79,7 +79,7 @@ public class RoomRepository implements IRoomRepository {
     }
 
     @Override
-    public Map<Room, Integer> listFacilityNotUsed() {
+    public Map<Room, Integer> getFacilityNotUsed() {
         Map<Room, Integer> roomIntegerMap = findAll();
         Map<Room, Integer> newRoomIntegerMap = new LinkedHashMap<>();
         for (Map.Entry<Room, Integer> roomIntegerEntry : roomIntegerMap.entrySet()) {

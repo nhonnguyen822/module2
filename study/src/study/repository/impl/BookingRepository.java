@@ -1,8 +1,8 @@
-package study.repository;
+package study.repository.impl;
 
 import study.common.ReadAndWriteDaTa;
 import study.enity.*;
-
+import study.repository.IBookingRepository;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -50,7 +50,7 @@ public class BookingRepository implements IBookingRepository {
     }
 
     @Override
-    public void edit(Booking booking) {
+    public void updateStatus(Booking booking) {
         Set<Booking> bookingSet = findAll();
         List<Booking> bookings = new ArrayList<>(bookingSet);
         for (Booking booking1 : bookings) {

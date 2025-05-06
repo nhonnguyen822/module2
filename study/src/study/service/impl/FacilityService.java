@@ -1,9 +1,10 @@
-package study.service;
+package study.service.impl;
 
 import study.enity.Facility;
 import study.enity.House;
 import study.enity.Room;
 import study.enity.Villa;
+import study.service.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -34,22 +35,22 @@ public class FacilityService implements IFacilityService<Facility> {
         }
     }
 
-    public Map<Facility, Integer> listFacilityNotUsed() {
+    public Map<Facility, Integer> getFacilityNotUsed() {
         Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
-        facilityIntegerMap.putAll(houseService.listFacilityNotUsed());
-        facilityIntegerMap.putAll(villaService.listFacilityNotUsed());
-        facilityIntegerMap.putAll(roomService.listFacilityNotUsed());
+        facilityIntegerMap.putAll(houseService.getFacilityNotUsed());
+        facilityIntegerMap.putAll(villaService.getFacilityNotUsed());
+        facilityIntegerMap.putAll(roomService.getFacilityNotUsed());
         return facilityIntegerMap;
     }
 
     @Override
-    public void edit(Facility facility, int usage) {
+    public void updateUsage(Facility facility, int usage) {
         if (facility instanceof Villa) {
-            villaService.edit((Villa) facility, usage);
+            villaService.updateUsage((Villa) facility, usage);
         } else if (facility instanceof House) {
-            houseService.edit((House) facility, usage);
+            houseService.updateUsage((House) facility, usage);
         } else if (facility instanceof Room) {
-            roomService.edit((Room) facility, usage);
+            roomService.updateUsage((Room) facility, usage);
         }
     }
 }

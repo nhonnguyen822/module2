@@ -1,11 +1,11 @@
-package study.service;
+package study.service.impl;
 
 import study.enity.Customer;
-import study.repository.IBookingRepository;
 import study.repository.IPromotionRepository;
-import study.repository.PromotionRepository;
+import study.repository.impl.PromotionRepository;
+import study.service.IPromotionService;
 
-import java.util.List;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
@@ -18,7 +18,7 @@ public class PromotionService implements IPromotionService {
     }
 
     @Override
-    public Stack<Customer> findCustomerVoucher() {
+    public Queue<Customer> findCustomerVoucher() {
         return promotionRepository.findCustomerVoucher();
     }
 }
