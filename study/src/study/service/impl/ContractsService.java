@@ -7,6 +7,7 @@ import study.service.IBookingServie;
 import study.service.IContractsService;
 import study.service.IFacilityService;
 import study.view.ContractView;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Set;
@@ -35,20 +36,8 @@ public class ContractsService implements IContractsService {
     }
 
     @Override
-    public void edit(Queue<Contracts> contracts, String contractId) {
-        boolean flag = false;
-        for (Contracts contract : contracts) {
-            if (contract.getContractId().equals(contractId)) {
-                Contracts contractEdit = ContractView.edit(contract);
-                contractsRepository.edit(contractEdit);
-                flag = true;
-                System.out.println("đổi thành công");
-                break;
-            }
-        }
-        if (!flag) {
-            System.out.println("không tìm thấy id ");
-        }
+    public void edit(Contracts contracts) {
+        contractsRepository.edit(contracts);
     }
 
     @Override
@@ -62,5 +51,16 @@ public class ContractsService implements IContractsService {
             bookingService.updateStatus(booking);
             break;
         }
+    }
+
+    @Override
+    public boolean check(String contractCode) {
+        Queue<Contracts> contracts = contractsRepository.findAll();
+        for (Contracts contract : contracts) {
+            if (contract.getContractId().equals(contractCode)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

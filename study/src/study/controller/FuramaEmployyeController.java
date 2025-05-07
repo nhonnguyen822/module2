@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class FuramaEmployyeController {
     private static final Scanner scanner = new Scanner(System.in);
     private static final IEmployeeService employeeService = new EmployeeService();
+
     public static void employeeManagement() {
         String exit = "";
         while (true) {
@@ -27,13 +28,24 @@ public class FuramaEmployyeController {
                         EmployeeView.display(nhanVienList);
                         break;
                     case 2:
-                        Employee nhanVien = EmployeeView.inputDataNV();
+                        Employee nhanVien = EmployeeView.inputDataAddEmployee();
                         employeeService.add(nhanVien);
                         break;
                     case 3:
-                        String maNV = EmployeeView.nhapMaNV();
-                        Employee nhanVienEdit = EmployeeView.inputDataNV();
-                        employeeService.edit(nhanVienEdit, maNV);
+                        String maNV = EmployeeView.employeeCode();
+                        List<Employee> employees = employeeService.findAll();
+                        boolean check = employeeService.check(maNV);
+                        if (check) {
+                            for (Employee employee : employees) {
+                                if (employee.getId().equals(maNV)) {
+                                    Employee employeeEdit = EmployeeView.inputDataEditEmployee(employee);
+                                    employeeService.edit(employeeEdit);
+                                    System.out.println("đổi thành công");
+                                }
+                            }
+                        }else {
+                            System.out.println("không tìm thấy mã nhân viên ");
+                        }
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");

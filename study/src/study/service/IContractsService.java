@@ -11,7 +11,9 @@ public interface IContractsService {
 
     Queue<Booking> convertBookingFromSetToQueue(Set<Booking> bookingSet);
 
-    void edit( Queue<Contracts> contracts,String contractId);
+    void edit(Contracts contracts);
 
     void add();
+
+    boolean check(String contractCode);
 }

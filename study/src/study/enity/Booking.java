@@ -22,7 +22,8 @@ public class Booking implements Comparable<Booking> {
     }
 
     public Booking(String bookingCode, LocalDate bookingDate, LocalDate rentalStarBooking,
-                   LocalDate rentalEndBooking, String customerCode, String customerName, String facilityCode, boolean status) {
+                   LocalDate rentalEndBooking, String customerCode, String customerName, String facilityCode,
+                   boolean status) {
         this.bookingCode = bookingCode;
         this.bookingDate = bookingDate;
         this.rentalStarDay = rentalStarBooking;

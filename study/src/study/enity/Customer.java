@@ -2,9 +2,7 @@ package study.enity;
 
 import study.common.Gender;
 import study.common.CustomerType;
-
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Customer extends Person {
     private CustomerType customerType;

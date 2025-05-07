@@ -54,10 +54,22 @@ public class FuramaBookingController {
                         ContractView.display(contractsQueue);
                         break;
                     case 5:
-                        Queue<Contracts> contractsServiceAll = contractsService.findAll();
-                        ContractView.display(contractsServiceAll);
                         String contractId = ContractView.inputContractsId();
-                        contractsService.edit(contractsServiceAll, contractId);
+                        boolean check = contractsService.check(contractId);
+                        if (check) {
+                            Queue<Contracts> contractsQueueEdit = contractsService.findAll();
+                            ContractView.display(contractsQueueEdit);
+                            for (Contracts contract : contractsQueueEdit) {
+                                if (contract.getContractId().equals(contractId)) {
+                                    Contracts contractEdit = ContractView.edit(contract);
+                                    contractsService.edit(contractEdit);
+                                    System.out.println("đổi thành công ");
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println("không tìm thấy mã hợp đồng");
+                        }
                         break;
                     case 6:
                         System.out.println("bạn chọn quay trở lại ,yes or no");

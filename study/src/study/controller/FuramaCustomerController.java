@@ -4,13 +4,13 @@ import study.enity.Customer;
 import study.service.impl.CustomerService;
 import study.service.ICustomerService;
 import study.view.CustomerView;
-
 import java.util.List;
 import java.util.Scanner;
 
 public class FuramaCustomerController {
     private static final Scanner scanner = new Scanner(System.in);
     private static final ICustomerService customerService = new CustomerService();
+
     public static void customerManagement() {
         String exit = "";
         while (true) {
@@ -23,17 +23,29 @@ public class FuramaCustomerController {
                 int chose = Integer.parseInt(scanner.nextLine());
                 switch (chose) {
                     case 1:
-                        List<Customer> khachHangList = customerService.findAll();
-                        CustomerView.display(khachHangList);
+                        List<Customer> customerList = customerService.findAll();
+                        CustomerView.display(customerList);
                         break;
                     case 2:
-                        Customer khachHangAdd = CustomerView.inputDataCustomer();
-                        customerService.add(khachHangAdd);
+                        Customer customerAdd = CustomerView.inputDataAddCustomer();
+                        customerService.add(customerAdd);
                         break;
                     case 3:
-                        String maKH = CustomerView.inputIdCustomer();
-                        Customer khachHangEdit = CustomerView.inputDataCustomer();
-                        customerService.edit(khachHangEdit, maKH);
+                        String customerCode = CustomerView.inputIdCustomer();
+                        boolean check = customerService.check(customerCode);
+                        if (check) {
+                            List<Customer> customers = customerService.findAll();
+                            for (Customer customer : customers) {
+                                if (customer.getId().equals(customerCode)) {
+                                    Customer customerEdit = CustomerView.inputDataEditCustomer(customer);
+                                    customerService.edit(customerEdit);
+                                    System.out.println("đổi thành công");
+                                    break;
+                                }
+                            }
+                        } else {
+                            System.out.println("không tìm thấy mã khách hàng ");
+                        }
                         break;
                     case 4:
                         System.out.println("bạn chọn quay trở lại ,yes or no");

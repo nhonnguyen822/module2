@@ -25,11 +25,10 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     @Override
-    public void edit(Employee employee, String maNV) {
+    public void edit(Employee employee) {
         List<Employee> employeeList = findAll();
         for (int i = 0; i < employeeList.size(); i++) {
-            if (employeeList.get(i).getId().equals(maNV)) {
-                employeeList.get(i).setId(employee.getId());
+            if (employeeList.get(i).getId().equals(employee.getId())) {
                 employeeList.get(i).setName(employee.getName());
                 employeeList.get(i).setBirtDay(employee.getBirtDay());
                 employeeList.get(i).setGender(employee.getGender());

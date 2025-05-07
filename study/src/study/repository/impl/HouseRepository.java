@@ -4,10 +4,8 @@ import study.common.RentalType;
 import study.common.ReadAndWriteDaTa;
 import study.enity.House;
 import study.repository.IHouseRepository;
-
 import java.util.*;
 import java.util.List;
-
 public class HouseRepository implements IHouseRepository {
     private static final String HOUSE_FILE = "src/study/data/house.csv";
     private static final boolean NOT_APPEND = false;

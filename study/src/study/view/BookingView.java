@@ -3,8 +3,6 @@ package study.view;
 import study.enity.Booking;
 import study.enity.Customer;
 import study.enity.Facility;
-import study.service.impl.CustomerService;
-import study.service.ICustomerService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -13,7 +11,6 @@ import java.util.regex.Pattern;
 
 public class BookingView {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final ICustomerService customerService = new CustomerService();
 
     public static void display(Set<Booking> bookingSet) {
         for (Booking booking : bookingSet) {
@@ -79,7 +76,11 @@ public class BookingView {
             String input = scanner.nextLine();
             try {
                 rentalStartDay = LocalDate.parse(input, dateTimeFormatter);
-                break;
+                if (rentalStartDay.isAfter(bookingDate)) {
+                    break;
+                } else {
+                    System.out.println("ngày bắt đầu thuê không thể nhỏ hơn ngày booking");
+                }
             } catch (Exception e) {
                 System.out.println("ngày không hợp lệ");
             }
@@ -90,7 +91,12 @@ public class BookingView {
             String input = scanner.nextLine();
             try {
                 rentalEndDay = LocalDate.parse(input, dateTimeFormatter);
-                break;
+                if (rentalEndDay.isBefore(rentalStartDay)) {
+                    break;
+                } else {
+                    System.out.println("ngày kết thúc  thuê không thể trước ngày bắt đầu thuê");
+                }
+
             } catch (Exception e) {
                 System.out.println("ngày không hợp lệ");
             }

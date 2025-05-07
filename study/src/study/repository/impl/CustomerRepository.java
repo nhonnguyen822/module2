@@ -62,19 +62,18 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public void edit(Customer khachHang, String maKH) {
+    public void edit(Customer customer){
         List<Customer> customerList = findAll();
         for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getId().equals(maKH)) {
-                customerList.get(i).setId(khachHang.getId());
-                customerList.get(i).setName(khachHang.getName());
-                customerList.get(i).setBirtDay(khachHang.getBirtDay());
-                customerList.get(i).setGender(khachHang.getGender());
-                customerList.get(i).setNumberCMND(khachHang.getNumberCMND());
-                customerList.get(i).setNumberPhone(khachHang.getNumberPhone());
-                customerList.get(i).setEmail(khachHang.getEmail());
-                customerList.get(i).setCustomerType(khachHang.getCustomerType());
-                customerList.get(i).setAddress(khachHang.getAddress());
+            if (customerList.get(i).getId().equals(customer.getId())) {
+                customerList.get(i).setName(customer.getName());
+                customerList.get(i).setBirtDay(customer.getBirtDay());
+                customerList.get(i).setGender(customer.getGender());
+                customerList.get(i).setNumberCMND(customer.getNumberCMND());
+                customerList.get(i).setNumberPhone(customer.getNumberPhone());
+                customerList.get(i).setEmail(customer.getEmail());
+                customerList.get(i).setCustomerType(customer.getCustomerType());
+                customerList.get(i).setAddress(customer.getAddress());
                 break;
             }
         }

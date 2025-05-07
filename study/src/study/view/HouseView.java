@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class HouseView {
     private static final Scanner scanner = new Scanner(System.in);
 
+
     public static House add() {
         boolean status = false;
         System.out.println("nhập mã dich vu");

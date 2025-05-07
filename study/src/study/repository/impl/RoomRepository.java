@@ -47,7 +47,6 @@ public class RoomRepository implements IRoomRepository {
                     e.printStackTrace();
                 }
             }
-
         }
         return houseIntegerMap;
     }

@@ -5,6 +5,7 @@ import study.enity.Employee;
 import study.repository.IEmployeeRepository;
 import study.repository.impl.EmployeeRepository;
 import study.service.IEmployeeService;
+import study.view.EmployeeView;
 
 import java.util.List;
 
@@ -12,20 +13,19 @@ public class EmployeeService implements IEmployeeService {
     private static final IEmployeeRepository employeeRepository = new EmployeeRepository();
 
     @Override
-    public void edit(Employee employee, String id) {
-        List<Employee> nhanVienList = employeeRepository.findAll();
-        boolean flag = false;
-        for (int i = 0; i <nhanVienList.size(); i++) {
-            if (nhanVienList.get(i).getId().equals(id)) {
-                employeeRepository.edit(employee, id);
-                System.out.println("đổi thành công ");
-                flag = true;
-                break;
+    public void edit(Employee employee) {
+        employeeRepository.edit(employee);
+    }
+
+    @Override
+    public boolean check(String id) {
+        List<Employee> employees = employeeRepository.findAll();
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getId().equals(id)) {
+                return true;
             }
         }
-        if(!flag){
-            System.out.println("không tìm thấy mã khách hàng ");
-        }
+        return false;
     }
 
     @Override

@@ -11,20 +11,19 @@ public class CustomerService implements ICustomerService {
     private static final ICustomerRepository customerRepository = new CustomerRepository();
 
     @Override
-    public void edit(Customer customer, String maKH) {
-        List<Customer> customerList = customerRepository.findAll();
-        boolean flag = false;
-        for (int i = 0; i < customerList.size(); i++) {
-            if (customerList.get(i).getId().equals(maKH)) {
-                customerRepository.edit(customer, maKH);
-                System.out.println("đổi thành công ");
-                flag = true;
-                break;
+    public void edit(Customer customer) {
+        customerRepository.edit(customer);
+    }
+
+    @Override
+    public boolean check(String id) {
+        List<Customer> customers = customerRepository.findAll();
+        for (Customer customer : customers) {
+            if (customer.getId().equals(id)) {
+                return true;
             }
         }
-        if (!flag) {
-            System.out.println("không tìm thấy mã khách hàng ");
-        }
+        return false;
     }
 
     @Override
